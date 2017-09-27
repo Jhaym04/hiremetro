@@ -9,7 +9,7 @@ class Hiremetro extends CI_Controller {
 		parent::__construct();
 		
 		//model name & nickname
-		$this->load->model('students_model','Students');
+		$this->load->model('hiremetro_model','hiremetrodbase');
 	}
 	public function index()
 	{
@@ -20,10 +20,51 @@ class Hiremetro extends CI_Controller {
 		
 	}
 	
-	public function view_student(){
+	public function login(){
+		$data = array(
+		'username' => $this->input->post('username'),
+		'password' => $this->input->post('password')
+		);
+		
+		$result = $this->hiremetrodbase->login($data);
+		
+		
 	}
 	
-	public function update_student(){
+	public function signup(){
+		// set table
+		$table = "login_credentials";
+		// get id
+		$id = $this->hiremetrodbase->getid($table);
+		
+		$id = $id+1;
+		
+		$data = array(
+		'employee_id' => ($id),
+		'username' => $this->input->post('username'),
+		'password' => $this->input->post('password'),
+		'email' => $this->input->post('email')
+		);
+		
+		$this->hiremetrodbase->signup($data, $table);
+		
+		$table="employee_information";
+		
+		$data = array(
+		'employee_id' => ($id),
+		'fname' => $this->input->post('firstname'),
+		'lname' => $this->input->post('lastname'),
+		'contact_number' => $this->input->post('contact_number'),
+		'email' => $this->input->post('email'),
+		'birthday' => $this->input->post('birthday'),
+		'gender' => $this->input->post('gender')
+		);
+		
+		$this->hiremetrodbase->signup($data, $table);
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/home');
+		
 	}
 	
 	public function delete_student(){

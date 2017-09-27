@@ -15,11 +15,102 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 		
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-				<li><a href="#" style="margin-right: 20px;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				<li><a data-toggle="modal" data-target="#signupModal" style="cursor: pointer;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				<li><a data-toggle="modal" data-target="#loginModal" style="margin-right: 20px; cursor: pointer;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
 	</nav>
+	
+	<!-- Modal for login-->
+		<div class="modal fade" id="loginModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> LOGIN </h4>
+						<p>check and update your account</p>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url('hiremetro/login')?>" method="post">
+							<div class="form-vertical">
+								<div class="form-group">
+									<input type="text" class="form-control" name="username" placeholder="Username"> 
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password" placeholder="Password"> 
+								</div>
+								<br />
+								<div class="text-center">
+									<a href=""> Forgot Password </a>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!-- Modal for signup-->
+		<div class="modal fade" id="signupModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> SIGN UP </h4>
+						<p>become an employee</p>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url('hiremetro/signup')?>" method="post">
+							<div class="form-vertical">
+								<div class="form-group">
+									<input type="text" class="form-control" name="username" placeholder="Username"> 
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password" placeholder="Password"> 
+								</div>
+								<div class="form-group form-inline">
+									<input type="text" class="form-control" name="firstname" placeholder="First name"> 
+									<input type="text" class="form-control" name="lastname" placeholder="Last name"> 
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="contact_number" placeholder="Mobile number"> 
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" name="email" placeholder="Email"> 
+								</div>
+								<div class="form-group">
+									<div class="input-group date" data-provide="datepicker">
+										<input type="text" class="form-control" name="birthday" placeholder="Birthday">
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-th"></span>
+										</div>
+										
+										<script>
+											$('.datepicker').datepicker();
+										</script>
+										
+									</div>
+								</div>
+								<div class="form-group form-inline">
+									<label class="radio-inline">
+										<input type="radio" name="gender" value="Male">Male
+									</label>
+									<label class="radio-inline">
+										 <input type="radio" name="gender" value="Female">Female
+									</label>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	
 	<div class="container-fluid pagee" style="background-image: url('images/bg.png'); min-height: 500px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
 		

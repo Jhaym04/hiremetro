@@ -1,6 +1,6 @@
 <?php
 
-class Students_model extends CI_Model{
+class hiremetro_model extends CI_Model{
 	
 	private $table = "students";
 	
