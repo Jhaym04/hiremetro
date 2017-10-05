@@ -31,6 +31,13 @@ class Hiremetro extends CI_Controller {
 		
 		$result = $this->hiremetrodbase->login($data);
 		
+		if($result == TRUE){
+			
+		}elseif($result == FALSE){
+			$this->session->set_userdata('login_FALSE', TRUE);
+			$this->index();
+		}
+		
 		
 	}
 	
