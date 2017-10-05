@@ -1,4 +1,28 @@
 <!-- homepage lol -->
+
+<?php
+	if($this->session->userdata('signup1') == TRUE){
+		
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#signup2Modal').modal('show');
+			});
+		</script>";
+		
+		$this->session->set_userdata('signup1', FALSE);
+	};
+	
+	if($this->session->userdata('back') == TRUE){
+		
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#signup1Modal').modal('show');
+			});
+		</script>";
+		
+		$this->session->set_userdata('back', FALSE);
+	}
+?>
 	
 	<!-- Navbar -->
 		
@@ -15,7 +39,7 @@
 		<div class="collapse navbar-collapse" id="myNavbar">
 		
 			<ul class="nav navbar-nav navbar-right">
-				<li><a data-toggle="modal" data-target="#signupModal" style="cursor: pointer;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				<li><a data-toggle="modal" data-target="#signup1Modal" style="cursor: pointer;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 				<li><a data-toggle="modal" data-target="#loginModal" style="margin-right: 20px; cursor: pointer;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 			</ul>
 		</div>
@@ -53,8 +77,8 @@
 			</div>
 		</div>
 	
-	<!-- Modal for signup-->
-		<div class="modal fade" id="signupModal" role="dialog">
+	<!-- Modal for signup 1-->
+		<div class="modal fade" id="signup1Modal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content" id="login">
 					<div class="modal-header text-center" id="header">
@@ -63,17 +87,15 @@
 						<p>become an employee</p>
 					</div>
 					<div class="modal-body">
-						<form action="<?php echo base_url('hiremetro/signup')?>" method="post">
+						<form action="<?php echo base_url('hiremetro/signup1')?>" method="post">
 							<div class="form-vertical">
-								<div class="form-group">
-									<input type="text" class="form-control" name="username" placeholder="Username"> 
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control" name="password" placeholder="Password"> 
-								</div>
-								<div class="form-group form-inline">
+								<div class="form-group form-inline" id="signup_name">
 									<input type="text" class="form-control" name="firstname" placeholder="First name"> 
+									<input type="text" class="form-control" name="middlename" placeholder="Middle Initial"> 
 									<input type="text" class="form-control" name="lastname" placeholder="Last name"> 
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="address" placeholder="Address"> 
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control" name="contact_number" placeholder="Mobile number"> 
@@ -96,24 +118,79 @@
 								</div>
 								<div class="form-group form-inline">
 									<label class="radio-inline">
-										<input type="radio" name="gender" value="Male">Male
+										<input type="radio" name="sex" value="Male" checked >Male
 									</label>
 									<label class="radio-inline">
-										 <input type="radio" name="gender" value="Female">Female
+										 <input type="radio" name="sex" value="Female">Female
 									</label>
 								</div>
 							</div>
 					</div>
 					<div class="modal-footer text-center">
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="btn btn-default" name="signup" value="1">Next</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<!-- Modal for signup 2-->
+		<div class="modal fade" id="signup2Modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> SIGN UP </h4>
+						<p>Enter your work details !</p>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url('hiremetro/signup2')?>" method="post">
+							<div class="form-vertical">
+								<div class="form-group form-inline">
+									<input type="text" class="form-control" name="username" placeholder="Username"> 
+									<input type="password" class="form-control" name="password" placeholder="Password">  
+								</div>
+								<div class="form-group">
+								  <label for="sel1">Choose Work Category</label>
+								  <select class="form-control" id="sel1" name="work_title">
+									<option>Bartender</option>
+									<option>Carpenter</option>
+									<option>Cook</option>
+									<option>Driver</option>
+									<option>Gardener</option>
+									<option>Janitor</option>
+									<option>Maid</option>
+									<option>Masseuse</option>
+									<option>Nanny</option>
+									<option>Plumber</option>
+									<option>Tutor</option>
+									<option>Waiter</option>
+								  </select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="work_description" placeholder="Work Description"> 
+								</div>
+								<div class="form-group">
+									<input type="number" class="form-control" name="work_pay" placeholder="Work Pay"> 
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="work_location" placeholder="Service Location"> 
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default" name="back" value="0">Submit</button>
+						<button type="submit" class="btn btn-default" name="back" value="1">Back</button>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	
-	<div class="container-fluid pagee" style="background-image: url('images/bg.png'); min-height: 500px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
-		
+	<!-- Parallax Background -->
+	
+	<div class="container-fluid pagee" style="background-image: url('images/bg.png'); min-height: 50%; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+			
 		<!-- NEED HELP? -->
 		
 		<div class="row">
