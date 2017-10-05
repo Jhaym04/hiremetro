@@ -3,6 +3,8 @@
 <?php
 	if($this->session->userdata('signup1') == TRUE){
 		
+		$this->session->set_userdata('signup1', FALSE);
+		
 		echo "<script> 
 			 $(window).on('load',function(){
 				$('#signup2Modal').modal('show');
@@ -14,13 +16,27 @@
 	
 	if($this->session->userdata('back') == TRUE){
 		
+		$this->session->set_userdata('back', FALSE);
+		
 		echo "<script> 
 			 $(window).on('load',function(){
 				$('#signup1Modal').modal('show');
 			});
 		</script>";
 		
-		$this->session->set_userdata('back', FALSE);
+	}
+	
+	if($this->session->userdata('login_FALSE') == TRUE){
+		
+		$this->session->set_userdata('login_FALSE', FALSE);
+		
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#loginFALSE').modal('show');
+			});
+		</script>";
+		
+		
 	}
 ?>
 	
@@ -46,6 +62,26 @@
 	</nav>
 	
 	<!-- Modal for login-->
+		<div class="modal fade" id="loginFALSE" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> LOGIN </h4>
+						<p>Attention</p>
+					</div>
+					<div class="modal-body text-center">
+						<p>Wrong username or password !! Try again !</p>
+					</div>
+					<div class="modal-footer text-center">
+						<button class="btn btn-default" data-dismiss="modal">Ok</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!-- Modal for wrong login-->
 		<div class="modal fade" id="loginModal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content" id="login">
