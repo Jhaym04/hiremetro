@@ -26,6 +26,8 @@
 	<script src="<?php echo base_url('bootstrap/js/bootstrap-datepicker.js');?>"> </script>
 	
 	<link rel="stylesheet" href="<?php echo base_url('css/home.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/filter.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/profile.css')?>">
 	
 </head>
 </html>

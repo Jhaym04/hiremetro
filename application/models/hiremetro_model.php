@@ -74,8 +74,37 @@ class hiremetro_model extends CI_Model{
 		}
 	}
 	
-	public function delete_record(){
-	}	
+	public function search_employees($valueToSearch){
+		
+		$this->db->select('*');
+		$this->db->from('employee_information');
+		$this->db->like('fname',  $valueToSearch, 'both');
+		$this->db->or_like('address', $valueToSearch, 'both');
+		$this->db->or_like('mname', $valueToSearch, 'both');
+		$this->db->or_like('lname', $valueToSearch, 'both');
+		$query = $this->db->get();
+		
+		return $query->result_array();
+		
+	}
+	
+	public function get_description($id){
+		
+		$condition = "employee_id ="."'".$id."'";
+		
+		$this->db->select('work_description');
+		$this->db->from('work_details');
+		$this->db->where('employee_id', $id);
+		
+		$query = $this->db->get();
+		$res = $query->result();
+		$q = $res[0];
+		
+		return $q->work_description;
+		
+		
+		
+	}
 	
 }
 

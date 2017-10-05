@@ -1,37 +1,37 @@
 <!-- filter lol -->
 
-	<?php
-	if(isset($_POST['search'])) {
-		$valueToSearch = $_POST['valueToSearch'];
-		// search in all table columns
-		// using concat mysql function
-		$query = "SELECT * FROM `employee_information` WHERE CONCAT(`fname`, `lname`, `mname`, `address`) LIKE '%".$valueToSearch."%'";
-		$search_result = filterTable($query);
-	}
-	else {
-		$query = "SELECT * FROM `hm_updated`";
-		$search_result = filterTable($query);
-	}
+	 <?php
+	// if(isset($_POST['search'])) {
+		// $valueToSearch = $_POST['valueToSearch'];
+		//search in all table columns
+		//using concat mysql function
+		// $query = "SELECT * FROM `employee_information` WHERE CONCAT(`fname`, `lname`, `mname`, `address`) LIKE '%".$valueToSearch."%'";
+		// $search_result = filterTable($query);
+	// }
+	// else {
+		// $query = "SELECT * FROM `hm_updated`";
+		// $search_result = filterTable($query);
+	// }
 
-	// function to connect and execute the query
-	function filterTable($query) {
-		$connect = mysqli_connect("localhost", "root", "", "hm_updated");
-		$filter_Result = mysqli_query($connect, $query);
-		return $filter_Result;
+	//function to connect and execute the query
+	// function filterTable($query) {
+		// $connect = mysqli_connect("localhost", "root", "", "hm_updated");
+		// $filter_Result = mysqli_query($connect, $query);
+		// return $filter_Result;
+	// }
+	//function to compute age
+		function ageCalculator($dob){
+			if(!empty($dob)){
+				$birthdate = new DateTime($dob);
+				$today   = new DateTime('today');
+				$age = $birthdate->diff($today)->y;
+				return $age;
+			}
+			else{
+				return 0;
+			}
 	}
-	// function to compute age
-	function ageCalculator($dob){
-		if(!empty($dob)){
-			$birthdate = new DateTime($dob);
-			$today   = new DateTime('today');
-			$age = $birthdate->diff($today)->y;
-			return $age;
-		}
-		else{
-			return 0;
-		}
-	}
-	?>
+	// ?>
 	
 	<!-- Navbar -->		
 	<nav class="navbar navbar-custom navbar-fixed-top">
@@ -76,8 +76,9 @@
 		<div class="row">
 			
 			<?php 
-				while($row = mysqli_fetch_array($search_result)):
-					$dob= $row['birthday'];
+				
+				foreach((array)$employees as $e){
+					$dob= $e['birthday'];
 					$dob= ageCalculator($dob);
 					echo '
 						<div class="col-md-3 ">
@@ -89,9 +90,9 @@
 							</div>		
 								
 							<div class="col-md-7">
-								<a href=""><h4>'.$row['lname'].', '.$row["fname"].' '.$row["mname"].'</h4></a>
-								<h5> '.$row['address'].' | '.$row['sex'].' | '.$dob.' yrs old </h5>
-								<h6> "description....."</h6>
+								<a href=""><h4>'.$e['lname'].', '.$e['fname'].' '.$e['mname'].'</h4></a>
+								<h5> '.$e['address'].' | '.$e['sex'].' | '.$dob.' yrs old </h5>
+								<h6> '.$e['description'].'</h6>
 							</div>
 								
 							<div class="col-md-3">
@@ -99,9 +100,8 @@
 						</div>	
 							
 						<div class="col-md-1 ">
-						</div>					
-					';
-				endwhile;
+						</div>	';				
+				}
 			?>
 			
 			
