@@ -1,8 +1,12 @@
+#text {
+	width: 90%;
+}
+
 .pagee{
 	background-image: url('images/bg.png');
 	
 	/* Set a specific height */
-    min-height: 50%;
+    min-height: 500px; 
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -37,6 +41,7 @@
 }
 
 
+
 #logo img {
 	
 	height: 40px;
@@ -44,6 +49,11 @@
 	margin-left: 20px;
 	
 }
+
+#input {
+	width: 100%;
+}
+	
 
 #logo span{
 	background-color: white;
@@ -58,18 +68,20 @@
 }
 
 #search input[type=submit]{
-	border: 0px;
-	border-radius: 2px;
-	font-size: 16px;
+	height: 28px;
+	width: 80px;
+	border: 0xpx;
+    border-radius: 3px;
+	font-size: 8px;
 	background-color: #0b486b;
 	color: white;	
 }
 
 #search input[type=text]{
+	width: 60%;
 	border-radius: 3px;
 
 }
-
 
 
 #jobs h4{
@@ -101,22 +113,6 @@
 #footer img{
 	width: 25px;
 	height: 25px;
-}
-
-#login{
-	font-family: Montserrat;
-}
-
-#login #header{
-	background-color: #3b8686;
-}
-
-#signup_name input[type=text]{
-	width: 32.8%;
-}
-
-.modal-footer{
-	text-align:center;
 }
 
 .border{

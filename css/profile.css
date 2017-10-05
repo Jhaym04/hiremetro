@@ -1,8 +1,21 @@
+.font{
+	font-family: abeatbykai;
+}
+
+.red {
+	color: red;
+}
+	
+
+#no {
+	margin-top: -10px;
+}
+
 .pagee{
 	background-image: url('images/bg.png');
 	
 	/* Set a specific height */
-    min-height: 50%;
+    min-height: 500px; 
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -36,6 +49,12 @@
 	background-color: transparent;
 }
 
+.none {
+list-style-type : none;
+}
+
+
+
 
 #logo img {
 	
@@ -44,6 +63,11 @@
 	margin-left: 20px;
 	
 }
+
+#input {
+	width: 100%;
+}
+	
 
 #logo span{
 	background-color: white;
@@ -58,18 +82,18 @@
 }
 
 #search input[type=submit]{
-	border: 0px;
-	border-radius: 2px;
-	font-size: 16px;
+	border: 0xpx;
+    border-radius: 2px;
+	font-size: 8px;
 	background-color: #0b486b;
 	color: white;	
 }
 
 #search input[type=text]{
+	width: 200px;
 	border-radius: 3px;
 
 }
-
 
 
 #jobs h4{
@@ -77,16 +101,7 @@
 	
 }
 
-#jobs img{
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
-	-webkit-transition: filter 0.3s;
-}
 
-#jobs img:hover{
-	opacity: 1;
-	 filter: grayscale(0%);
-}
 
 #footer{
 	background-color: #3b8686;
@@ -103,22 +118,43 @@
 	height: 25px;
 }
 
-#login{
-	font-family: Montserrat;
-}
-
-#login #header{
-	background-color: #3b8686;
-}
-
-#signup_name input[type=text]{
-	width: 32.8%;
-}
-
-.modal-footer{
-	text-align:center;
-}
-
 .border{
 	border: 1px solid black;
+}
+
+button.accordion {
+    background-color: #eeeeee;
+    color: #444;
+    cursor: pointer;
+    padding: 20px;
+    width: 100%;
+    border-top: black;
+    text-align: left;
+    outline: black;
+    font-size: 16px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #d6d7d7;
+}
+
+button.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2212";
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }
