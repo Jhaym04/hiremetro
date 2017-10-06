@@ -16,7 +16,6 @@ class Hiremetro extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Hiremetro";		
-		$this->session->set_userdata('logged_in', FALSE);
 		$this->load->view('include/header', $data);
 		$this->load->view('hiremetro/home', $data);
 		$this->load->view('include/footer', $data);
@@ -130,10 +129,22 @@ class Hiremetro extends CI_Controller {
 			
 			$this->hiremetrodbase->signup($data, $table);
 			
+			$newdata = array(
+                   'username'  => $_POST['username'],
+                   'logged_in' => TRUE,
+				   'id' => $id
+               );
+			
+			$this->session->set_userdata($newdata);
+			
+			$this->load->view('include/header');
+			$this->load->view('hiremetro/profile');
+			
 		}
 	}	
 		public function logout(){
 			session_destroy();
+			$_SESSION = "";
 			
 			$data['title'] = "Hiremetro";
 			
@@ -227,6 +238,13 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/search' ,$data);
+		
+	}
+	
+	public function view_profile(){
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/profile');
 		
 	}
 }
