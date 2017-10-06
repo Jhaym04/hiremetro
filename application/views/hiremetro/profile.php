@@ -1,4 +1,4 @@
-<!-- homepage lol -->
+<!-- profile -->
 	
 	<!-- Navbar -->
 		
@@ -63,10 +63,10 @@
 					</div>
 					
 					<div class="col-md-3 text-center" >
-						<h2>Lei Dian Mendoza</h2>
-						<h4><span class="glyphicon glyphicon-envelope"></span> ldtm17gmail.com</p>
-						<h4><span class="glyphicon glyphicon-map-marker red"></span> Dasmarinas, Cavite</p>
-						<h4><span class="glyphicon glyphicon-phone"></span> 09367935476</p>	
+						<h2><?php echo $employee['fname'].$employee['mname'].$employee['lname'];?></h2>
+						<h4><span class="glyphicon glyphicon-envelope"></span> <?php echo $employee['email'];?></p>
+						<h4><span class="glyphicon glyphicon-map-marker red"></span><?php echo $employee['worker_location'];?></p>
+						<h4><span class="glyphicon glyphicon-phone"></span> <?php echo $employee['contact'];?></p>	
 					</div>
 					
 					<div class="col-md-3">		
@@ -78,10 +78,11 @@
 			</div>
 			
 			<div class="col-md-1">
-			</div>
-			
+			</div>			
 		
 		</div>
+		
+		<br/>
 		
 		<div class="row">
 		
@@ -89,30 +90,67 @@
 			</div>
 			
 			<div class="col-md-8">
-				
-				<button class="accordion" >View Employers</button>
+				<button class="accordion"  >View Employers</button>
 					<div class="panel">
 					  <p>Insert text</p>
 					</div>
 
-				<button class="accordion">Manage Ads</button>
+				<button class="accordion"  >Manage Ads</button>
+					<div class="panel">
+						<form action="<?php echo base_url('hiremetro/update_work');?>" method="post">
+							<br />
+							Work Title: 
+							<input type="text" name="work_title" value="<?php echo $employee['work_title']; ?>" /> <br /><br />
+							Work Description: 
+							<input type="text" name="work_description" value="<?php echo $employee['work_description']; ?>" /> <br /><br />
+							Work Location: 
+							<input type="text" name="worker_location" value="<?php echo $employee['worker_location']; ?>" /> <br /><br />
+							Work Pay: 
+							<input type="number" name="work_pay" value="<?php echo $employee['work_pay']; ?>"/> <br /><br />  
+						<button type="submit" class="btn btn-default" name="update">UPDATE</button>
+						</form>
+					</div>
+
+				<button class="accordion" >Notification Settings</button>
 					<div class="panel">
 					  <p>Insert text</p>
 					</div>
 
-				<button class="accordion">Notification Settings</button>
-					<div class="panel">
-					  <p>Insert text</p>
-					</div>
-
-				<button class="accordion">Account Settings</button>
+				<button class="accordion" >Account Settings</button>
 					<div class="panel" >
-					  <p>Insert text</p>
+					<form action="<?php echo base_url('hiremetro/update_information');?>" method="post">
+						<br />
+						First name 
+						<input type="text" name="fname" value="<?php echo $employee['fname'];?>" /> <br /><br />
+						Middle name 
+						<input type="text" name="mname" value="<?php echo $employee['mname'];?>" /> <br /><br />
+						Last name 
+						<input type="text" name="lname" value="<?php echo $employee['lname'];?>" /> <br /><br />
+						Username: 
+						<input type="text" name="username" value="<?php echo $employee['username'];?>" /> <br /><br />
+						Password: 
+						<input type="password" name="password" value="<?php echo $employee['password']?>" /> <br /><br /> 
+						Picture: 
+						<button type="button"> Upload Picture </button> <br /><br /> 
+					<button type="submit" class="btn btn-default" name="update">UPDATE</button>
+					</form>
 					</div>
+					
+				<button class="accordion" id="red" >Deactivate</button>
+				<div class="panel" >
+					<p>Insert text</p>
+				</div>
+				
+				</form>
 			</div>
-
 			<div class="col-md-2 ">
 			</div>
+
+			</div>
+			<br />
+
+			
+
 
 		<script>
 		var acc = document.getElementsByClassName("accordion");
@@ -130,7 +168,7 @@
 		  }
 		}
 		</script>
-		</div>
+
 		
 		<!-- footer -->
 		
