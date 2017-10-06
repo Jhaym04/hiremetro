@@ -85,11 +85,13 @@ class Hiremetro extends CI_Controller {
 			$this->load->view('hiremetro/home');
 		}else{
 			
-			$table = "employee_information";
+			$table = "login_credentials";
 			
 			$id = $this->hiremetrodbase->getid($table);
 			
-			$id = $id+1;
+			$table = "employee_information";
+			
+			$id = $id+2;
 			
 			$data = array(
 				'employee_id' => ($id),
@@ -137,8 +139,24 @@ class Hiremetro extends CI_Controller {
 			
 			$this->session->set_userdata($newdata);
 			
+			$employee = array(
+				'fname' => $this->session->userdata('fname'),
+				'mname' => $this->session->userdata('mname'),
+				'lname' => $this->session->userdata('lname'),
+				'email' => $this->session->userdata('email'),
+				'worker_location' => $this->input->post('work_location'),
+				'contact' => $this->session->userdata('contact'),
+				'work_description' => $this->input->post('work_description'),
+				'work_pay' => $this->input->post('work_pay'),
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'work_title' => $this->input->post('work_title')
+			);
+			
+			$data['employee'] = $employee;
+			
 			$this->load->view('include/header');
-			$this->load->view('hiremetro/profile');
+			$this->load->view('hiremetro/profile', $data);
 			
 		}
 	}	
@@ -243,8 +261,187 @@ class Hiremetro extends CI_Controller {
 	
 	public function view_profile(){
 		
+		$table = "employee_information";
+			
+		$ei = $this->hiremetrodbase->get_employee_information($id,$table);
+			
+		$table = "login_credentials";
+			
+		$lc = $this->hiremetrodbase->get_employee_information($id,$table);
+		
+		$table = "work_details";
+		
+		$wd = $this->hiremetrodbase->get_employee_information($id,$table);
+		
+		$infos = array(
+				'work_title' => $wd[0]['work_title'],
+				'work_description' => $wd[0]['work_description'],
+				'worker_location' => $wd[0]['worker_location'],
+				'work_pay' => $wd[0]['work_pay'],
+				'fname' => $ei[0]['fname'],
+				'mname' => $ei[0]['mname'],
+				'lname' => $ei[0]['lname'],
+				'email' => $ei[0]['email'],
+				'contact' => $ei[0]['contact'],
+				'username' => $lc[0]['username'],
+				'password' => $lc[0]['password']
+			);
+			
+			$data['employee'] = $infos;
+		
 		$this->load->view('include/header');
-		$this->load->view('hiremetro/profile');
+		$this->load->view('hiremetro/profile', $data);
 		
 	}
-}
+	
+	public function update_employee(){
+		
+		if(isset($_POST['update'])){
+		
+		$id = $this->session->userdata('id');
+		
+		$table = "employee_information";
+		
+		$info = array(
+			'fname' => $this->input->post('fname'),
+			'mname' => $this->input->post('mname'),
+			'lname' => $this->input->post('lname')
+		);
+
+		$this->hiremetrodbase->update_details ($id,$table,$info);
+		
+		$table = "login_credentials";
+		
+		$info = array(
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+		);
+		
+		$this->hiremetrodbase->update_details ($id,$table,$info);
+		
+		$info = array(
+			'work_title' => $this->input->post('work_title'),
+			'work_description' => $this->input->post('work_description'),
+			'worker_location' => $this->input->post('worker_location'),
+			'work_pay' => $this->input->post('work_pay'),
+			'fname' => $this->input->post('fname'),
+			'mname' => $this->input->post('mname'),
+			'lname' => $this->input->post('lname'),
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+		);
+		
+		$data['employee'] = $info;
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/profile', $data);
+		
+		}else{
+			$info = array(
+			'work_title' => $this->input->post('work_title'),
+			'work_description' => $this->input->post('work_description'),
+			'worker_location' => $this->input->post('worker_location'),
+			'work_pay' => $this->input->post('work_pay'),
+			'fname' => $this->input->post('fname'),
+			'mname' => $this->input->post('mname'),
+			'lname' => $this->input->post('lname'),
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+		);
+		
+		$data['employee'] = $info;
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/profile', $data);
+		}
+	}
+		
+		public function update_work(){
+			
+			$id = $this->session->userdata('id');
+			$table = "work_details";
+			
+			$info = array(
+			'work_title' => $this->input->post('work_title'),
+			'work_description' => $this->input->post('work_description'),
+			'worker_location' => $this->input->post('worker_location'),
+			'work_pay' => $this->input->post('work_pay')
+			);
+			
+			$this->hiremetrodbase->update_details($id,$table,$info);
+			
+			$table = "employee_information";
+			
+			$ei = $this->hiremetrodbase->get_employee_information($id,$table);
+			
+			$table = "login_credentials";
+			
+			$lc = $this->hiremetrodbase->get_employee_information($id,$table);
+			
+			$infos = array(
+				'work_title' => $this->input->post('work_title'),
+				'work_description' => $this->input->post('work_description'),
+				'worker_location' => $this->input->post('worker_location'),
+				'work_pay' => $this->input->post('work_pay'),
+				'fname' => $ei[0]['fname'],
+				'mname' => $ei[0]['mname'],
+				'lname' => $ei[0]['lname'],
+				'email' => $ei[0]['email'],
+				'contact' => $ei[0]['contact'],
+				'username' => $lc[0]['username'],
+				'password' => $lc[0]['password']
+			);
+			
+			$data['employee'] = $infos;
+			
+			$this->load->view('include/header');
+			$this->load->view('hiremetro/profile',$data);
+		}
+		
+		public function update_information(){
+			$id = $this->session->userdata('id');
+			$table = "login_credentials";
+			
+			$info = array(
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password')
+			);
+			
+			$this->hiremetrodbase->update_details($id,$table,$info);
+			
+			$table = "employee_information";
+			
+			$info = array(
+			'fname' => $this->input->post('fname'),
+			'mname' => $this->input->post('mname'),
+			'lname' => $this->input->post('lname'),
+			'email' => $this->input->post('email'),
+			'contact' => $this->input->post('contact')
+			);
+			
+			$this->hiremetrodbase->update_details($id,$table,$info);
+			
+			$table = "work_details";
+			$wd = $this->hiremetrodbase->get_employee_information($id,$table);
+			
+			$infos = array(
+				'work_title' => $wd[0]['work_title'],
+				'work_description' => $wd[0]['work_description'],
+				'worker_location' => $wd[0]['worker_location'],
+				'work_pay' => $wd[0]['work_pay'],
+				'fname' => $this->input->post('fname'),
+				'mname' => $this->input->post('mname'),
+				'lname' => $this->input->post('lname'),
+				'email' => $this->input->post('email'),
+				'contact' => $this->input->post('contact'),
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password')
+			);
+			
+			$data['employee'] = $infos;
+			
+			$this->load->view('include/header');
+			$this->load->view('hiremetro/profile',$data);
+		}
+	}
+
