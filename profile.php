@@ -1,4 +1,4 @@
-<!-- homepage lol -->
+<!-- profile -->
 	
 	<!-- Navbar -->
 		
@@ -48,7 +48,7 @@
 					
 					<div class="col-md-3 text-center" >
 						<h2>Lei Dian Mendoza</h2>
-						<h4><span class="glyphicon glyphicon-envelope"></span> ldtm17gmail.com</p>
+						<h4><span class="glyphicon glyphicon-envelope"></span> ldtm17@gmail.com</p>
 						<h4><span class="glyphicon glyphicon-map-marker red"></span> Dasmarinas, Cavite</p>
 						<h4><span class="glyphicon glyphicon-phone"></span> 09367935476</p>	
 					</div>
@@ -62,10 +62,11 @@
 			</div>
 			
 			<div class="col-md-1">
-			</div>
-			
+			</div>			
 		
 		</div>
+		
+		<br/ >
 		
 		<div class="row">
 		
@@ -74,29 +75,39 @@
 			
 			<div class="col-md-8">
 				
-				<button class="accordion" >View Employers</button>
+				<button class="accordion"  >View Employers</button>
 					<div class="panel">
 					  <p>Insert text</p>
 					</div>
 
-				<button class="accordion">Manage Ads</button>
+				<button class="accordion"  >Manage Ads</button>
 					<div class="panel">
 					  <p>Insert text</p>
 					</div>
 
-				<button class="accordion">Notification Settings</button>
+				<button class="accordion" >Notification Settings</button>
 					<div class="panel">
 					  <p>Insert text</p>
 					</div>
 
-				<button class="accordion">Account Settings</button>
+				<button class="accordion" >Account Settings</button>
 					<div class="panel" >
 					  <p>Insert text</p>
 					</div>
+					
+				<button class="accordion" >Deactivate</button>
+				<div class="panel" >
+					<p>Insert text</p>
+					</div>
 			</div>
-
 			<div class="col-md-2 ">
 			</div>
+
+			</div>
+			<br />
+
+			
+
 
 		<script>
 		var acc = document.getElementsByClassName("accordion");
@@ -114,7 +125,7 @@
 		  }
 		}
 		</script>
-		</div>
+
 		
 		<!-- footer -->
 		
