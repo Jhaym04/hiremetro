@@ -284,46 +284,46 @@
 					<div class="col-md-1">
 					</div>
 					<div class="col-md-2">
-						<a href=""><img src="<?php echo base_url('images/bartender.png')?>" alt=""></a>	
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=bartender';?>"><img src="<?php echo base_url('images/bartender.png')?>" alt=""></a>	
 						<h4> BARTENDER </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/gardener.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=gardener';?>"><img src="<?php echo base_url('images/gardener.png')?>" alt=""></a>
 						<h4> GARDENER </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/nanny.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=nanny';?>"><img src="<?php echo base_url('images/nanny.png')?>" alt=""></a>
 						<h4> NANNY </h4>
 						<br /> <br />
 					</div>
 					<div class="col-md-3">
-						<a href=""><img src="<?php echo base_url('images/carpenter.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=carpenter';?>"><img src="<?php echo base_url('images/carpenter.png')?>" alt=""></a>
 						<h4> CARPENTER </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/janitor.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=janitor';?>"><img src="<?php echo base_url('images/janitor.png')?>" alt=""></a>
 						<h4> JANITOR </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/plumber.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=plumber';?>"><img src="<?php echo base_url('images/plumber.png')?>" alt=""></a>
 						<h4> PLUMBER </h4>
 						<br /> <br />
 					</div>
 					<div class="col-md-3">
-						<a href=""><img src="<?php echo base_url('images/cook.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=cook';?>"><img src="<?php echo base_url('images/cook.png')?>" alt=""></a>
 						<h4> COOK </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/maid.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=maid';?>"><img src="<?php echo base_url('images/maid.png')?>" alt=""></a>
 						<h4> MAID </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/tutor.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=tutor';?>"><img src="<?php echo base_url('images/tutor.png')?>" alt=""></a>
 						<h4> TUTOR </h4>
 						<br /> <br />
 					</div>
 					<div class="col-md-2">
-						<a href=""><img src="<?php echo base_url('images/driver.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=driver';?>"><img src="<?php echo base_url('images/driver.png')?>" alt=""></a>
 						<h4> DRIVER </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/massause.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=masseuse';?>"><img src="<?php echo base_url('images/massause.png')?>" alt=""></a>
 						<h4> MASSEUSE </h4>
 						<br /> <br />
-						<a href=""><img src="<?php echo base_url('images/waiter.png')?>" alt=""></a>
+						<a href="<?php echo base_url('hiremetro/search_category').'?category=waiter';?>"><img src="<?php echo base_url('images/waiter.png')?>" alt=""></a>
 						<h4> WAITER </h4>
 						<br /> <br />
 						<br /> <br />
