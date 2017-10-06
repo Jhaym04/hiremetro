@@ -1,0 +1,162 @@
+.pagee{
+	background-image: url('images/bg.png');
+	
+	/* Set a specific height */
+    min-height: 50%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.affix {
+      top: 0;
+      width: 100%;
+	  z-index: 10;
+ }
+ 
+ .navbar-custom {
+    background-color:#3b8686;
+    color: white;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    color: black;
+	background-color: transparent;
+}
+
+
+#logo img {
+	
+	height: 40px;
+	margin: 5px;
+	margin-left: 20px;
+	
+}
+
+#logo span{
+	background-color: white;
+}
+
+#needhelp img{
+	width: 1366px;
+}
+
+#myCarousel img{
+	width: 100%;
+}
+
+#search input[type=submit]{
+	border: 0px;
+	border-radius: 2px;
+	font-size: 16px;
+	background-color: #0b486b;
+	color: white;	
+}
+
+#search input[type=text]{
+	border-radius: 3px;
+
+}
+
+
+
+#jobs h4{
+	font-family: abeatbykai;
+	
+}
+
+#jobs img{
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+	-webkit-transition: filter 0.3s;
+}
+
+#jobs img:hover{
+	opacity: 1;
+	 filter: grayscale(0%);
+}
+
+#footer{
+	background-color: #3b8686;
+	
+}
+
+#footer a{
+	text-decoration: underline;
+	color: white;
+}
+
+#footer img{
+	width: 25px;
+	height: 25px;
+}
+
+#login{
+	font-family: Montserrat;
+}
+
+#login #header{
+	background-color: #3b8686;
+}
+
+#signup_name input[type=text]{
+	width: 32.8%;
+}
+
+#so1{
+	border-radius: 25px;
+    background-color: #73AD21;
+    padding: 20px; 
+    width: 200px;
+    height: 150px;    
+}
+
+#soHeader{
+	background-color: #3b8686;
+}
+
+#soMod{
+	font-family: Montserrat;
+	color: #ebebeb;
+}
+
+#soMod img{
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+}
+
+#soMod img:hover{
+	opacity: 0.5;
+}
+
+#b1 img{
+	width: 100%;
+}
+
+#b2 img{
+	width: 100%;
+}
+
+#b3 img{
+	padding: 15px;
+}
+
+.modal-footer{
+	text-align:center;
+}
+
+.border{
+	border: 1px solid black;
+}
