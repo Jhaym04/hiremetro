@@ -16,9 +16,25 @@
     <div class="collapse navbar-collapse" id="myNavbar">
     
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#" style="margin-right: 20px;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+				<?php
+					
+					if($this->session->userdata('logged_in') == TRUE){
+						echo '
+						<li><a href="'; echo base_url('hiremetro'); echo '"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+						<li class="dropdown">
+							<a href="#"  style="margin-right: 20px;" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata('username').' </a>
+							<ul class="dropdown-menu">
+								<li><a href="'; echo base_url('hiremetro/view_profile'); echo '">Profile <span style="color: black;" class="glyphicon glyphicon-user"></span></a></li>
+								<li><a href="'; echo base_url('hiremetro/logout'); echo'"> Logout <span style="color: black;" class="glyphicon glyphicon-off"></span></a></li>
+							</ul>
+						</li>';
+					}else{
+						echo '
+						<li><a data-toggle="modal" data-target="#signup1Modal" style="cursor: pointer;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li><a data-toggle="modal" data-target="#loginModal" style="margin-right: 20px; cursor: pointer;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> ';
+					};
+				?>
+	  </ul>
     </div>
   </nav>
   
