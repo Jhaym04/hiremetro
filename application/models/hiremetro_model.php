@@ -102,8 +102,26 @@ class hiremetro_model extends CI_Model{
 		
 		return $q->work_description;
 		
+	}
+	
+	public function search_category($category){
 		
+		$this->db->select('*');
+		$this->db->from('work_details');
+		$this->db->where('work_title', $category);
+		$query = $this->db->get();
 		
+		return $query->result_array();
+	}
+	
+	public function search_by_id($id){
+		
+		$this->db->select('*');
+		$this->db->from('employee_information');
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		
+		return $query->result_array();
 	}
 	
 }
