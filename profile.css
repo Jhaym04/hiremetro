@@ -2,13 +2,9 @@
 	font-family: abeatbykai;
 }
 
+
 .red {
 	color: red;
-}
-	
-
-#no {
-	margin-top: -10px;
 }
 
 .pagee{
@@ -53,7 +49,12 @@
 list-style-type : none;
 }
 
-
+#red {
+	color: red;
+}
+#no {
+	margin-top: -20px;
+}
 
 
 #logo img {
@@ -119,28 +120,30 @@ list-style-type : none;
 }
 
 .border{
-	border: 1px solid black;
+	border: 3px solid gray;
+
 }
 
 button.accordion {
-    background-color: #eeeeee;
+    background-color: #eee;
     color: #444;
     cursor: pointer;
-    padding: 20px;
+    padding: 18px;
     width: 100%;
-    border-top: black;
+    border: none;
     text-align: left;
-    outline: black;
-    font-size: 16px;
+    outline: none;
+    font-size: 15px;
     transition: 0.4s;
+	margin-top: -20px;
 }
 
 button.accordion.active, button.accordion:hover {
-    background-color: #d6d7d7;
+    background-color: #d3d6d7;
 }
 
 button.accordion:after {
-    content: '\002B';
+    content: '\23f5';
     color: #777;
     font-weight: bold;
     float: right;
@@ -148,12 +151,12 @@ button.accordion:after {
 }
 
 button.accordion.active:after {
-    content: "\2212";
+    content: "\23f7";
 }
 
 div.panel {
     padding: 0 18px;
-    background-color: #fff;
+    background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
