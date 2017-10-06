@@ -42,7 +42,6 @@ class hiremetro_model extends CI_Model{
 		$this->db->select('employee_id');
 		$this->db->from($table);
 		$this->db->order_by('employee_id', 'desc');
-		$this->db->limit(1);
 			
 		$query = $this->db->get();
 			
@@ -124,6 +123,22 @@ class hiremetro_model extends CI_Model{
 		return $query->result_array();
 	}
 	
-}
+	public function update_details ($id,$table,$info){
+		$this->db->where('employee_id', $id);
+		$this->db->update($table, $info);
+	}
+	
+	public function get_employee_information($id,$table){
+		
+		$this->db->select('*');
+		$this->db->from($table);
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		
+		return $query->result_array();
+		
+	}
+	
+}	
 
 ?>
