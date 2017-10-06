@@ -188,4 +188,45 @@ class Hiremetro extends CI_Controller {
 		$this->load->view('include/header', $data);
 		$this->load->view('hiremetro/about');
 	}
+	
+	public function search_category(){
+		
+		$category = $_GET['category'];
+		
+		$result = $this->hiremetrodbase->search_category($category);
+		
+		foreach($result as $r){
+			$id = array(
+				'employee_id' => $r['employee_id'],
+				'work_description' => $r['work_description']
+			);
+			
+			$work[] = $id;
+		}
+		
+		$c = count($work);
+		
+		for($a=0;$a<$c;$a++){
+			
+			$result = $this->hiremetrodbase->search_by_id($work[$a]['employee_id']);
+			
+			$details = array(
+				'fname' => $result[0]['fname'],
+				'lname' => $result[0]['lname'],
+				'mname' => $result[0]['mname'],
+				'address' => $result[0]['address'],
+				'birthday' => $result[0]['birthday'],
+				'description' => $work[$a]['work_description'],
+				'sex' => $result[0]['sex']
+			);
+			
+			$employee[] = $details;
+		}
+		
+		$data['employees'] = $employee;
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/search' ,$data);
+		
+	}
 }
