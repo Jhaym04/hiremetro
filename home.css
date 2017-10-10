@@ -133,12 +133,12 @@
 }
 
 #soMod img{
-	-webkit-transition: opacity 0.5s;
-	transition: opacity 0.5s;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
 }
 
 #soMod img:hover{
-	opacity: 0.5;
+	opacity: 0.7;
 }
 
 #b1 img{
@@ -151,6 +151,11 @@
 
 #b3 img{
 	padding: 15px;
+}
+
+#termsofserv{
+	color: #171717;
+	margin: 10px;
 }
 
 .modal-footer{
