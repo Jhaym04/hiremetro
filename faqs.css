@@ -1,0 +1,130 @@
+
+
+.center {
+	margin-top: 20px;
+}
+
+.faqc {
+	padding-bottom: 20px;
+}
+
+.font{
+	font-family: abeatbykai;
+}
+
+
+.pagee{
+	background-image: url('images/bg.png');
+	
+	/* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.affix {
+      top: 0;
+      width: 100%;
+	  z-index: 10;
+ }
+ 
+ .navbar-custom {
+    background-color:#3b8686;
+    color: white;
+    border-radius:0;
+	height: 200px;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    color: black;
+	background-color: transparent;
+}
+
+
+
+#logo span{
+	background-color: white;
+
+
+}
+
+
+
+
+
+#footer{
+	background-color: #3b8686;
+	
+}
+
+#footer a{
+	text-decoration: underline;
+	color: white;
+}
+
+#footer img{
+	width: 25px;
+	height: 25px;
+}
+
+
+
+button.accordion {
+    background-color: #ddd;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #3b8686;
+	color:white;
+}
+
+button.accordion:after {
+    content: '\23f5';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    content: "\23f7";
+}
+
+
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+#faqs {
+	width: 650px;
+	height: 130px;
+}	
+
+#acc { 
+padding-top: 230px;
