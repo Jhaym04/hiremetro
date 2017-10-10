@@ -62,11 +62,10 @@ class hiremetro_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->from('login_credentials');
 		$this->db->where($condition);
-		$this->db->limit(1);
 		$query = $this->db->get();
 		
-		if ($query->num_rows() == 1){
-			return true;
+		if ($query->num_rows()>0){
+			return $query->result_array();
 		}
 		else{
 			return false;
@@ -137,6 +136,62 @@ class hiremetro_model extends CI_Model{
 		
 		return $query->result_array();
 		
+	}
+	
+	public function get_all($valueToSearch){
+		
+		$this->db->select('*');
+		$this->db->from('employee_information');
+		$this->db->where('employee_id', $valueToSearch);
+		
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function get_details($valueToSearch){
+		
+		$this->db->select('*');
+		$this->db->from('work_details');
+		$this->db->where('employee_id', $valueToSearch);
+		
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function get_languages($valueToSearch){
+		
+	 $this->db->select('language');
+	 $this->db->from('languages_spoken');
+	 $this->db->where('employee_id', $valueToSearch);
+	
+	 $query = $this->db->get();
+	 return $query->result_array();
+	}	
+	public function get_username($id){
+		
+		$condition = "employee_id ="."'".$id."'";
+		
+		$this->db->select('username');
+		$this->db->from('login_credentials');
+		$this->db->where('employee_id', $id);
+		
+		$query = $this->db->get();
+		$res = $query->result();
+		$q = $res[0];
+		
+		return $q->username;	
+	}
+	
+	public function get_id($valueToSearch){
+		
+		$this->db->select('employee_id');
+		$this->db->from('login_credentials');
+		$this->db->where('username', $valueToSearch);
+		
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 	
 }	
