@@ -30,9 +30,17 @@ class Hiremetro extends CI_Controller {
 		
 		$result = $this->hiremetrodbase->login($data);
 		
-		if($result == TRUE){
+		$infos = array(
+			'employee_id' => $result[0]['employee_id']
+		);
+		
+		$id = $infos['employee_id'];
+		
+		if($result != FALSE){
 			
 			$data['title'] = "Welcome: Hiremetro";
+			
+			$result = $id;
 			
 			$newdata = array(
                    'username'  => $_POST['username'],
@@ -42,8 +50,36 @@ class Hiremetro extends CI_Controller {
 			
 			$this->session->set_userdata($newdata);
 			
-			$this->load->view('include/header', $data);
-			$this->load->view('hiremetro/profile');
+			$table = "employee_information";
+			
+		$ei = $this->hiremetrodbase->get_employee_information($result,$table);
+			
+		$table = "login_credentials";
+			
+		$lc = $this->hiremetrodbase->get_employee_information($result,$table);
+		
+		$table = "work_details";
+		
+		$wd = $this->hiremetrodbase->get_employee_information($result,$table);
+		
+		$infos = array(
+				'work_title' => $wd[0]['work_title'],
+				'work_description' => $wd[0]['work_description'],
+				'worker_location' => $wd[0]['worker_location'],
+				'work_pay' => $wd[0]['work_pay'],
+				'fname' => $ei[0]['fname'],
+				'mname' => $ei[0]['mname'],
+				'lname' => $ei[0]['lname'],
+				'email' => $ei[0]['email'],
+				'contact' => $ei[0]['contact'],
+				'username' => $lc[0]['username'],
+				'password' => $lc[0]['password']
+			);
+			
+			$data['employee'] = $infos;
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/profile', $data);
 			
 		}elseif($result == FALSE){
 			$this->session->set_userdata('login_FALSE', TRUE);
@@ -191,15 +227,18 @@ class Hiremetro extends CI_Controller {
 				
 				$id = $r['employee_id'];
 				$description = $this->hiremetrodbase->get_description($id);
+				$username = $this->hiremetrodbase->get_username($id);
 				
 				$info = array(
+					'employee_id' => $r['employee_id'],
 					'lname' => $r['lname'],
 					'fname' => $r['fname'],
 					'mname' => $r['mname'],
 					'address' => $r['address'],
 					'sex' => $r['sex'],
 					'birthday' => $r['birthday'],
-					'description' => ($description)
+					'description' => ($description),
+					'username' => ($username)
 				);
 				$employees[] = $info;
 			}
@@ -262,6 +301,8 @@ class Hiremetro extends CI_Controller {
 	public function view_profile(){
 		
 		$table = "employee_information";
+		
+		$id = $this->session->userdata('id');
 			
 		$ei = $this->hiremetrodbase->get_employee_information($id,$table);
 			
@@ -443,5 +484,58 @@ class Hiremetro extends CI_Controller {
 			$this->load->view('include/header');
 			$this->load->view('hiremetro/profile',$data);
 		}
+		
+		public function employee_profile(){
+		$data['title'] = "Ads: Hiremetro";
+		
+		if( $_GET['username'])
+		{
+			$username = $_GET['username'];
+			$result = $this->hiremetrodbase->get_id($username);
+			
+			$employees = null;
+			
+			foreach($result as $r){
+				$id = $r['employee_id'];
+			}
+			
+			foreach($result as $r){
+				
+				$allinfo = $this->hiremetrodbase->get_all($id);
+				$alldetails = $this->hiremetrodbase->get_details($id);
+				
+				$info = array(
+					'employee_id' => $id,
+					'lname' => $allinfo[0]['lname'],
+					'fname' => $allinfo[0]['fname'],
+					'mname' => $allinfo[0]['mname'],
+					'address' => $allinfo[0]['address'],
+					'sex' => $allinfo[0]['sex'],
+					'birthday' => $allinfo[0]['birthday'],
+					'contact' => $allinfo[0]['contact'],
+					'email' => $allinfo[0]['email'],
+					'work_title' => $alldetails[0]['work_title'],
+					'work_description' => $alldetails[0]['work_description'],
+					'worker_location' => $alldetails[0]['worker_location'],
+						);
+				$employees[] = $info;
+			}
+			$data['employees'] = $employees;	
+		}
+		
+		
+		$this->load->view('include/header', $data);
+		$this->load->view('hiremetro/ads', $data);		
+	}
+	
+	public function view_faqs(){
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/faqs');
+		
+	}
+	
+	
+		
 	}
 
