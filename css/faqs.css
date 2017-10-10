@@ -1,11 +1,17 @@
+
+
+.center {
+	margin-top: 20px;
+}
+
+.faqc {
+	padding-bottom: 20px;
+}
+
 .font{
 	font-family: abeatbykai;
 }
 
-
-.red {
-	color: red;
-}
 
 .pagee{
 	background-image: url('images/bg.png');
@@ -26,10 +32,11 @@
 	  z-index: 10;
  }
  
- .navbar-custom {
+ .navbar-custom #faqsnav{
     background-color:#3b8686;
     color: white;
     border-radius:0;
+	height: 200px;
 }
 
 .navbar-custom .navbar-nav > li > a {
@@ -45,62 +52,15 @@
 	background-color: transparent;
 }
 
-.none {
-list-style-type : none;
-}
 
-#red {
-	color: red;
-}
-#no {
-	margin-top: -20px;
-}
-
-
-#logo img {
-	
-	height: 40px;
-	margin: 5px;
-	margin-left: 20px;
-	
-}
-
-#input {
-	width: 100%;
-}
-	
 
 #logo span{
 	background-color: white;
-}
 
-#needhelp img{
-	width: 1366px;
-}
-
-#myCarousel img{
-	width: 100%;
-}
-
-#search input[type=submit]{
-	border: 0xpx;
-    border-radius: 2px;
-	font-size: 8px;
-	background-color: #0b486b;
-	color: white;	
-}
-
-#search input[type=text]{
-	width: 200px;
-	border-radius: 3px;
 
 }
 
 
-#jobs h4{
-	font-family: abeatbykai;
-	
-}
 
 
 
@@ -119,13 +79,10 @@ list-style-type : none;
 	height: 25px;
 }
 
-.border{
-	border: 3px solid gray;
 
-}
 
 button.accordion {
-    background-color: #eee;
+    background-color: #ddd;
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -135,16 +92,16 @@ button.accordion {
     outline: none;
     font-size: 15px;
     transition: 0.4s;
-	margin-top: -20px;
 }
 
 button.accordion.active, button.accordion:hover {
-    background-color: #d3d6d7;
+    background-color: #3b8686;
+	color:white;
 }
 
 button.accordion:after {
     content: '\23f5';
-    color: #777;
+    color: white;
     font-weight: bold;
     float: right;
     margin-left: 5px;
@@ -154,10 +111,21 @@ button.accordion.active:after {
     content: "\23f7";
 }
 
+
+
 div.panel {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+}
+
+#faqs {
+	width: 650px;
+	height: 130px;
+}	
+
+#acc { 
+padding-top: 230px;
 }
