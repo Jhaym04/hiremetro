@@ -142,22 +142,22 @@
 						<form action="<?php echo base_url('hiremetro/signup1')?>" method="post">
 							<div class="form-vertical">
 								<div class="form-group form-inline" id="signup_name">
-									<input type="text" class="form-control" name="firstname" placeholder="First name"> 
-									<input type="text" class="form-control" name="middlename" placeholder="Middle Initial"> 
-									<input type="text" class="form-control" name="lastname" placeholder="Last name"> 
+									<input type="text" class="form-control" name="firstname" placeholder="First name" maxlength="50"> 
+									<input type="text" class="form-control" name="middlename" placeholder="Middle Initial" maxlength="1"> 
+									<input type="text" class="form-control" name="lastname" placeholder="Last name" maxlength="50"> 
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" name="address" placeholder="Address"> 
+									<input type="text" class="form-control" name="address" placeholder="Address" maxlength="50" maxlength="100"> 
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" name="contact_number" placeholder="Mobile number"> 
+									<input type="number" class="form-control" name="contact_number" placeholder="Mobile number" maxlength="11"> 
 								</div>
 								<div class="form-group">
-									<input type="email" class="form-control" name="email" placeholder="Email"> 
+									<input type="email" class="form-control" name="email" placeholder="Email" maxlength="50"> 
 								</div>
 								<div class="form-group">
 									<div class="input-group date" data-provide="datepicker">
-										<input type="text" class="form-control" name="birthday" placeholder="Birthday">
+										<input type="text" class="form-control" name="birthday" placeholder="Birthday" readonly>
 										<div class="input-group-addon">
 											<span class="glyphicon glyphicon-th"></span>
 										</div>
@@ -199,8 +199,8 @@
 						<form action="<?php echo base_url('hiremetro/signup2')?>" method="post">
 							<div class="form-vertical">
 								<div class="form-group form-inline">
-									<input type="text" class="form-control" name="username" placeholder="Username"> 
-									<input type="password" class="form-control" name="password" placeholder="Password">  
+									<input type="text" class="form-control" name="username" placeholder="Username" maxlength="50"> 
+									<input type="password" class="form-control" name="password" placeholder="Password" maxlength="25">  
 								</div>
 								<div class="form-group">
 								  <label for="sel1">Choose Work Category</label>
@@ -220,13 +220,13 @@
 								  </select>
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" name="work_description" placeholder="Work Description"> 
+									<input type="text" class="form-control" name="work_description" placeholder="Work Description" maxlength="250"> 
 								</div>
 								<div class="form-group">
 									<input type="number" class="form-control" name="work_pay" placeholder="Work Pay"> 
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" name="work_location" placeholder="Service Location"> 
+									<input type="text" class="form-control" name="work_location" placeholder="Service Location" maxlength="100"> 
 								</div>
 							</div>
 					</div>
@@ -456,7 +456,7 @@
 			</div>
 			<div class="col-lg-2 ">
 				<br />
-				<p><img src="<?php echo base_url('images/fb.ico')?>" alt=""> facebook.com/hiremetro</p>
+				<p><img src="<?php echo base_url('images/fb.ico')?>" alt="">fb.com/hiremetro</p>
 				<p><img src="<?php echo base_url('images/twitter.png')?>" alt=""> @hiremetro</p>
 				<p><img src="<?php echo base_url('images/gmail.ico')?>" alt=""> hiremetro@gmail.com</p> 
 			</div>

@@ -46,7 +46,7 @@
 			<div class="col-md-1 ">
 			</div>
 			
-			<div class="col-md-10 " id="jobs">
+			<div class="col-md-10 ">
 				
 				<br /> <br /> 			
 				
@@ -96,7 +96,11 @@
 					</div>
 
 				<button class="accordion"  >Manage Ads</button>
-					<div class="panel">
+					<div class="panel text-center">
+					<div class="row">
+						<div class "col-md-2">
+						</div>
+						<div class "col-md-8">
 						<form action="<?php echo base_url('hiremetro/update_work');?>" method="post">
 							<br />
 							Work Title: 
@@ -108,16 +112,21 @@
 							Work Pay: 
 							<input type="number" name="work_pay" value="<?php echo $employee['work_pay']; ?>"/> <br /><br />  
 						<button type="submit" class="btn btn-default" name="update">UPDATE</button>
+						<br/>
+						</div>
+						<div class "col-md-2">
+						</div>
 						</form>
 					</div>
-
+					</br>
+					</div>
 				<button class="accordion" >Notification Settings</button>
 					<div class="panel">
 					  <p>Insert text</p>
 					</div>
 
 				<button class="accordion" >Account Settings</button>
-					<div class="panel" >
+					<div class="panel text-center">
 					<form action="<?php echo base_url('hiremetro/update_information');?>" method="post">
 						<br />
 						First name 
@@ -134,15 +143,22 @@
 						<button type="button"> Upload Picture </button> <br /><br /> 
 					<button type="submit" class="btn btn-default" name="update">UPDATE</button>
 					</form>
+					<br>
 					</div>
 					
 				<button class="accordion" id="red" >Deactivate</button>
-				<div class="panel" >
-					<p>Insert text</p>
+				<div class="panel text-center">
+					<br/>
+					<p>Are you sure ?</p>
+					<p>By pressing the DEACTIVATE button, all your records will all be deleted ..</p>
+					<form action="<?php echo base_url('hiremetro/deactivate')?>" method="post">
+						<button type="submit" class="btn btn-danger" name="deact">DEACTIVATE</button>
+					</form>
+					<br/>
 				</div>
-				
-				</form>
+				<br/>
 			</div>
+			
 			<div class="col-md-2 ">
 			</div>
 

@@ -91,6 +91,14 @@ class Hiremetro extends CI_Controller {
 	
 	public function signup1(){
 		// Sessions
+		
+		$bday = $_POST['birthday'];
+		$m = substr($bday,0,2);
+		$d = substr($bday,3,2);
+		$y = substr($bday,6,4);
+		
+		$bday = $y.'-'.$m.'-'.$d;
+		
 		$newdata = array(
 			'fname' => $_POST['firstname'],
 			'mname' => $_POST['middlename'],
@@ -98,8 +106,7 @@ class Hiremetro extends CI_Controller {
 			'address' => $_POST['address'],
 			'contact' => $_POST['contact_number'],
 			'email' => $_POST['email'],
-			'birthday' => $_POST['birthday'],
-			'birthday' => $_POST['birthday'],
+			'birthday' => $bday,
 			'sex' => $_POST['sex'],
 			'signup1' => TRUE
 		);
@@ -277,6 +284,7 @@ class Hiremetro extends CI_Controller {
 		for($a=0;$a<$c;$a++){
 			
 			$result = $this->hiremetrodbase->search_by_id($work[$a]['employee_id']);
+			$username = $this->hiremetrodbase->get_username($work[$a]['employee_id']);
 			
 			$details = array(
 				'fname' => $result[0]['fname'],
@@ -285,7 +293,8 @@ class Hiremetro extends CI_Controller {
 				'address' => $result[0]['address'],
 				'birthday' => $result[0]['birthday'],
 				'description' => $work[$a]['work_description'],
-				'sex' => $result[0]['sex']
+				'sex' => $result[0]['sex'],
+				'username' => $username
 			);
 			
 			$employee[] = $details;
@@ -535,7 +544,17 @@ class Hiremetro extends CI_Controller {
 		
 	}
 	
-	
+	public function deactivate(){
+		$id = $this->session->userdata('id');
+		
+		$this->hiremetrodbase->deactivate($id);
+		
+		$this->load->view('include/header');
+		$this->load->view('hiremetro/home');
+		
+		session_destroy();
+		$_SESSION = "";
+	}
 		
 	}
 

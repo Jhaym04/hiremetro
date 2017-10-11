@@ -80,6 +80,8 @@ class hiremetro_model extends CI_Model{
 		$this->db->or_like('address', $valueToSearch, 'both');
 		$this->db->or_like('mname', $valueToSearch, 'both');
 		$this->db->or_like('lname', $valueToSearch, 'both');
+		$this->db->or_like('work_details.work_title', $valueToSearch, 'both');
+		$this->db->join('work_details', 'employee_information.employee_id = work_details.employee_id');
 		$query = $this->db->get();
 		
 		return $query->result_array();
@@ -192,6 +194,17 @@ class hiremetro_model extends CI_Model{
 		
 		$query = $this->db->get();
 		return $query->result_array();
+	}
+	
+	public function deactivate($id){
+		$this->db->where('employee_id', $id);
+		$this->db->delete('employee_information');
+		
+		$this->db->where('employee_id', $id);
+		$this->db->delete('login_credentials');
+		
+		$this->db->where('employee_id', $id);
+		$this->db->delete('work_details');
 	}
 	
 }	

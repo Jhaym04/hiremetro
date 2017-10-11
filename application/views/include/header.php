@@ -28,6 +28,10 @@
 	<link rel="stylesheet" href="<?php echo base_url('css/home.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/filter.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/profile.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/ads.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/faqs.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/soffersterms.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/about.css')?>">
 	
 </head>
 </html>
