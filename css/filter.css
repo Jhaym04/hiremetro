@@ -67,21 +67,7 @@
 	width: 100%;
 }
 
-#search input[type=submit]{
-	height: 28px;
-	width: 80px;
-	border: 0xpx;
-    border-radius: 3px;
-	font-size: 8px;
-	background-color: #0b486b;
-	color: white;	
-}
 
-#search input[type=text]{
-	width: 60%;
-	border-radius: 3px;
-
-}
 
 
 #jobs h4{

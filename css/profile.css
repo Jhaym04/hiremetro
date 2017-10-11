@@ -82,20 +82,6 @@ list-style-type : none;
 	width: 100%;
 }
 
-#search input[type=submit]{
-	border: 0xpx;
-    border-radius: 2px;
-	font-size: 8px;
-	background-color: #0b486b;
-	color: white;	
-}
-
-#search input[type=text]{
-	width: 200px;
-	border-radius: 3px;
-
-}
-
 
 #jobs h4{
 	font-family: abeatbykai;

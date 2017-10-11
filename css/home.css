@@ -58,19 +58,39 @@
 }
 
 #search input[type=submit]{
-	border: 0px;
-	border-radius: 2px;
-	font-size: 16px;
+	height: 28px;
+	width: 80px;
+	border: 0xpx;
+    border-radius: 3px;
+	border: none;
+	font-size: 15px;
 	background-color: #0b486b;
-	color: white;	
+	color: white;
+	-webkit-transition: color 1s;
+	-webkit-transition: background-color 0.5s;
+	
+}
+
+#search input[type=submit]:hover{
+	background-color: black;
+	color: white;
 }
 
 #search input[type=text]{
+	width: 30%;
 	border-radius: 3px;
+	font-size: 15px;
+	-webkit-transition: width 0.5s;
 
 }
 
+#search input[type=text]:hover{
+	width: 50%;
+}
 
+#search input[type=text]:focus{
+	width: 50%;
+}
 
 #jobs h4{
 	font-family: abeatbykai;
