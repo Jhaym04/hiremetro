@@ -2,7 +2,7 @@
 	background-image: url('images/bg.png');
 	
 	/* Set a specific height */
-    min-height: 50%;
+    min-height: 100%;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -17,6 +17,8 @@
 	  z-index: 10;
  }
  
+ 
+ 
  .navbar-custom {
     background-color:#3b8686;
     color: white;
@@ -25,9 +27,9 @@
 
 .navbar-custom .navbar-nav > li > a {
     color: white;
+	-webkit-transition: color 0.5s;
 }
 
-.navbar-custom .navbar-nav > li > a:hover,
 .navbar-custom .navbar-nav > li > a:focus,
 .navbar-custom .navbar-nav > .active > a:hover,
 .navbar-custom .navbar-nav > .active > a:focus,
@@ -36,6 +38,9 @@
 	background-color: transparent;
 }
 
+.navbar-custom .navbar-nav > li > a:hover{
+    color: black;
+}
 
 #logo img {
 	
@@ -48,6 +53,7 @@
 #logo span{
 	background-color: white;
 }
+
 
 #needhelp img{
 	width: 1366px;
@@ -100,7 +106,7 @@
 #jobs img{
 	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
-	-webkit-transition: filter 0.3s;
+	-webkit-transition: filter 1s;
 }
 
 #jobs img:hover{
@@ -116,6 +122,11 @@
 #footer a{
 	text-decoration: underline;
 	color: white;
+	-webkit-transition: color 0.5s;
+}
+
+#footer a:hover{
+	color: black;
 }
 
 #footer img{
@@ -141,4 +152,56 @@
 
 .border{
 	border: 1px solid black;
+}
+
+//Admin
+
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #3b8686;
+    border-right: 1px solid #eee;
+	font-size: 20px;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  color: white;
+  -webkit-transition: color 0.5s;
+}
+
+.nav-sidebar > li > a:hover{
+	 background-color: transparent;
+	 color: black;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #000000;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+.nav-sidebar > p{
+	padding-left: 10px;
+	color: white;
 }

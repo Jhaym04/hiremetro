@@ -50,6 +50,10 @@
 	
 }
 
+#search_result h4{
+	color: red;
+}
+
 #input {
 	width: 100%;
 }
@@ -73,17 +77,6 @@
 #jobs h4{
 	font-family: abeatbykai;
 	
-}
-
-#jobs img{
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-    filter: grayscale(100%);
-	-webkit-transition: filter 0.3s;
-}
-
-#jobs img:hover{
-	opacity: 1;
-	 filter: grayscale(0%);
 }
 
 #footer{
