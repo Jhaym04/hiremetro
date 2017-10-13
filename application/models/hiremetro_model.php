@@ -186,6 +186,20 @@ class hiremetro_model extends CI_Model{
 		return $q->username;	
 	}
 	
+	public function get_work($id){
+		$condition = "employee_id ="."'".$id."'";
+		
+		$this->db->select('work_title');
+		$this->db->from('work_details');
+		$this->db->where('employee_id', $id);
+		
+		$query = $this->db->get();
+		$res = $query->result();
+		$q = $res[0];
+		
+		return $q->work_title;
+	}
+	
 	public function get_id($valueToSearch){
 		
 		$this->db->select('employee_id');
@@ -206,6 +220,8 @@ class hiremetro_model extends CI_Model{
 		$this->db->where('employee_id', $id);
 		$this->db->delete('work_details');
 	}
+	
+	
 	
 }	
 

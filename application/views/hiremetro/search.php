@@ -33,6 +33,168 @@
 	}
 	// ?>
 	
+	<!-- Modal for login-->
+		<div class="modal fade" id="loginFALSE" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> LOGIN </h4>
+						<p>Attention</p>
+					</div>
+					<div class="modal-body text-center">
+						<p>Wrong username or password !! Try again !</p>
+					</div>
+					<div class="modal-footer text-center">
+						<button class="btn btn-default" data-dismiss="modal">Ok</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!-- Modal for wrong login-->
+		<div class="modal fade" id="loginModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> LOGIN </h4>
+						<p>check and update your account</p>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url('hiremetro/login')?>" method="post">
+							<div class="form-vertical">
+								<div class="form-group">
+									<input type="text" class="form-control" name="username" placeholder="Username"> 
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" name="password" placeholder="Password"> 
+								</div>
+								<br />
+								<div class="text-center">
+									<a href=""> Forgot Password </a>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!-- Modal for signup 1-->
+		<div class="modal fade" id="signup1Modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> SIGN UP </h4>
+						<p>become an employee</p>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url('hiremetro/signup1')?>" method="post">
+							<div class="form-vertical">
+								<div class="form-group form-inline" id="signup_name">
+									<input type="text" class="form-control" name="firstname" placeholder="First name" maxlength="50"> 
+									<input type="text" class="form-control" name="middlename" placeholder="Middle Initial" maxlength="1"> 
+									<input type="text" class="form-control" name="lastname" placeholder="Last name" maxlength="50"> 
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="address" placeholder="Address" maxlength="50" maxlength="100"> 
+								</div>
+								<div class="form-group">
+									<input type="number" class="form-control" name="contact_number" placeholder="Mobile number" maxlength="11"> 
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" name="email" placeholder="Email" maxlength="50"> 
+								</div>
+								<div class="form-group">
+									<div class="input-group date" data-provide="datepicker">
+										<input type="text" class="form-control" name="birthday" placeholder="Birthday" readonly>
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-th"></span>
+										</div>
+										
+										<script>
+											$('.datepicker').datepicker();
+										</script>
+										
+									</div>
+								</div>
+								<div class="form-group form-inline">
+									<label class="radio-inline">
+										<input type="radio" name="sex" value="Male" checked >Male
+									</label>
+									<label class="radio-inline">
+										 <input type="radio" name="sex" value="Female">Female
+									</label>
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default" name="signup" value="1">Next</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<!-- Modal for signup 2-->
+		<div class="modal fade" id="signup2Modal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> SIGN UP </h4>
+						<p>Enter your work details !</p>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url('hiremetro/signup2')?>" method="post">
+							<div class="form-vertical">
+								<div class="form-group form-inline">
+									<input type="text" class="form-control" name="username" placeholder="Username" maxlength="50"> 
+									<input type="password" class="form-control" name="password" placeholder="Password" maxlength="25">  
+								</div>
+								<div class="form-group">
+								  <label for="sel1">Choose Work Category</label>
+								  <select class="form-control" id="sel1" name="work_title">
+									<option>Bartender</option>
+									<option>Carpenter</option>
+									<option>Cook</option>
+									<option>Driver</option>
+									<option>Gardener</option>
+									<option>Janitor</option>
+									<option>Maid</option>
+									<option>Masseuse</option>
+									<option>Nanny</option>
+									<option>Plumber</option>
+									<option>Tutor</option>
+									<option>Waiter</option>
+								  </select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="work_description" placeholder="Work Description" maxlength="250"> 
+								</div>
+								<div class="form-group">
+									<input type="number" class="form-control" name="work_pay" placeholder="Work Pay"> 
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="work_location" placeholder="Service Location" maxlength="100"> 
+								</div>
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default" name="back" value="0">Submit</button>
+						<button type="submit" class="btn btn-default" name="back" value="1">Back</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
 	<!-- Navbar -->		
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header" id="logo" >
@@ -106,8 +268,10 @@
 								<a href=""><img src="images/driver.png" class="img-responsive" alt="" ></a>
 							</div>		
 								
-							<div class="col-md-7">
-								<a href="'; echo base_url('hiremetro/employee_profile').'?username='.$e['username'].'"><h4>'.$e['lname'].', '.$e['fname'].' '.$e['mname'].'</h4></a>
+							<div class="col-md-7" id="search_result">
+								<a href="'; echo base_url('hiremetro/employee_profile').'?username='.$e['username'].'"><h3>'
+								.$e['lname'].', '.$e['fname'].' '.$e['mname'].'</h3></a>
+								<h4 style="color:teal;"> '.$e['work_title'].' </h4>
 								<h5> '.$e['address'].' | '.$e['sex'].' | '.$dob.' yrs old </h5>
 								<h6> '.$e['description'].'	</h6>
 							</div>
@@ -128,41 +292,4 @@
 		
 	</br>
 		
-	<!-- footer -->
-	<div class="row" id="footer">
-			
-		<div class="col-lg-1">
-		</div>
-			
-		<div class="col-lg-1">
-			</br>
-			<a>About Us</a>
-			<br /><a>Comments</a>
-			<br /><a>Suggestions</a>
-			<br />
-		</div>
-		
-		<div class="col-lg-1">
-			</br>
-			<a>Special Offer</a>
-			<br /><a>Discount</a>
-			<br /><a>Freebies</a>
-			<br />
-		</div>
-		
-		<div class="col-lg-6 text-center">
-			<br />
-			<p>hiremetro © 2017 | Designed by Group 4</p>
-		</div>
-			
-		<div class="col-lg-2 ">
-			<br />
-			<p><img src="<?php echo base_url('images/fb.ico')?>" alt=""> facebook.com/hiremetro</p>
-			<p><img src="<?php echo base_url('images/twitter.png')?>" alt=""> @hiremetro</p>
-			<p><img src="<?php echo base_url('images/gmail.ico')?>" alt=""> hiremetro@gmail.com</p> 
-		</div>
-			
-		<div class="col-lg-1">
-		</div>
-			
-	</div>
+	

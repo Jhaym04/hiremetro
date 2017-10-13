@@ -51,7 +51,7 @@
 			<div class="col-md-1 ">
 			</div>
 			
-			<div class="col-md-10 " id="jobs">
+			<div class="col-md-10 " >
 				
 				<br /> <br /> 			
 				
@@ -116,30 +116,28 @@
 		<div class="col-md-3">
 			</div>
 		<div class="col-md-6 text-center">
-		<hr style="border:1px solid #000"/>
+		<hr style="border:0.5px solid #cccccc"/>
 		</div>
 		<div class="col-md-3">
 			</div>
 		</div>
 		
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 			</div>
-			<div class="col-md-6" style="border: 2px solid gray">
+			<div class="col-md-8" style="border: 2px solid #cccccc">
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12 text-center">
 							<h2>Know More</h2>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-						<hr style="border:1px solid #000"/>
+						<hr style="border:0.5px solid #cccccc"/>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-1">
-						</div>
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<h4><span class="glyphicon glyphicon-envelope"></span>
 								<?php foreach((array)$employees as $e) {
 								echo ''.$e['email'].'';
@@ -159,7 +157,7 @@
 								?>
 							</p>	
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<h4>Birthday: <?php foreach((array)$employees as $e) {
 								echo ''.$e['birthday'].'';
 								}
@@ -174,19 +172,19 @@
 							</h4>
 							
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<div class="row">
-							<button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download-alt"></span> Resume </button>
+							<button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-download-alt"></span> Resume </button>
 							</div>
 							<br />
 							<div class="row">
-							<button class="btn btn-success btn-sm"><span class="glyphicon glyphicon-download-alt"></span> Credentials </button>
+							<button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-download-alt"></span> Credentials </button>
 							</div>
 						</div>
 					</div>
 					
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-2">
 			</div>
 		</div>
 		

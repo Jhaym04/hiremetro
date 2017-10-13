@@ -13,8 +13,7 @@ class Hiremetro extends CI_Controller {
 		$this->load->library('session');
 	}
 	
-	public function index()
-	{
+	public function index(){
 		$data['title'] = "Hiremetro";		
 		$this->load->view('include/header', $data);
 		$this->load->view('hiremetro/home', $data);
@@ -80,6 +79,8 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/profile', $data);
+		$this->load->view('include/footer', $data);
+		
 			
 		}elseif($result == FALSE){
 			$this->session->set_userdata('login_FALSE', TRUE);
@@ -126,6 +127,7 @@ class Hiremetro extends CI_Controller {
 			$this->session->set_userdata('back', TRUE);
 			$this->load->view('include/header');
 			$this->load->view('hiremetro/home');
+			$this->load->view('include/footer');
 		}else{
 			
 			$table = "login_credentials";
@@ -200,19 +202,21 @@ class Hiremetro extends CI_Controller {
 			
 			$this->load->view('include/header');
 			$this->load->view('hiremetro/profile', $data);
+			$this->load->view('include/footer', $data);
 			
 		}
 	}	
-		public function logout(){
-			session_destroy();
-			$_SESSION = "";
+	public function logout(){
+			$this->session->sess_destroy();
+			$this->session->set_userdata('logged_in', FALSE);
 			
 			$data['title'] = "Hiremetro";
 			
 			$this->load->view('include/header', $data);
 			$this->load->view('hiremetro/home', $data);
+			$this->load->view('include/footer', $data);
 			
-		}
+	}
 	
 	
 	public function search(){
@@ -235,6 +239,7 @@ class Hiremetro extends CI_Controller {
 				$id = $r['employee_id'];
 				$description = $this->hiremetrodbase->get_description($id);
 				$username = $this->hiremetrodbase->get_username($id);
+				$work = $this->hiremetrodbase->get_work($id);
 				
 				$info = array(
 					'employee_id' => $r['employee_id'],
@@ -245,7 +250,8 @@ class Hiremetro extends CI_Controller {
 					'sex' => $r['sex'],
 					'birthday' => $r['birthday'],
 					'description' => ($description),
-					'username' => ($username)
+					'username' => ($username),
+					'work_title' => ($work)
 				);
 				$employees[] = $info;
 			}
@@ -254,6 +260,7 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header', $data);
 		$this->load->view('hiremetro/search', $data);
+		$this->load->view('include/footer', $data);
 	}
 	
 	public function view_about(){
@@ -262,6 +269,7 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header', $data);
 		$this->load->view('hiremetro/about');
+		$this->load->view('include/footer', $data);
 	}
 	
 	public function search_category(){
@@ -285,6 +293,7 @@ class Hiremetro extends CI_Controller {
 			
 			$result = $this->hiremetrodbase->search_by_id($work[$a]['employee_id']);
 			$username = $this->hiremetrodbase->get_username($work[$a]['employee_id']);
+			$working = $this->hiremetrodbase->get_work($work[$a]['employee_id']);
 			
 			$details = array(
 				'fname' => $result[0]['fname'],
@@ -294,7 +303,8 @@ class Hiremetro extends CI_Controller {
 				'birthday' => $result[0]['birthday'],
 				'description' => $work[$a]['work_description'],
 				'sex' => $result[0]['sex'],
-				'username' => $username
+				'username' => $username,
+				'work_title' => $working
 			);
 			
 			$employee[] = $details;
@@ -304,6 +314,7 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/search' ,$data);
+		$this->load->view('include/footer', $data);
 		
 	}
 	
@@ -341,6 +352,7 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/profile', $data);
+		$this->load->view('include/footer', $data);
 		
 	}
 	
@@ -385,6 +397,7 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/profile', $data);
+		$this->load->view('include/footer', $data);
 		
 		}else{
 			$info = array(
@@ -403,6 +416,7 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/profile', $data);
+		$this->load->view('include/footer', $data);
 		}
 	}
 		
@@ -446,6 +460,7 @@ class Hiremetro extends CI_Controller {
 			
 			$this->load->view('include/header');
 			$this->load->view('hiremetro/profile',$data);
+			$this->load->view('include/footer', $data);
 		}
 		
 		public function update_information(){
@@ -492,6 +507,7 @@ class Hiremetro extends CI_Controller {
 			
 			$this->load->view('include/header');
 			$this->load->view('hiremetro/profile',$data);
+			$this->load->view('include/footer', $data);
 		}
 		
 		public function employee_profile(){
@@ -534,13 +550,15 @@ class Hiremetro extends CI_Controller {
 		
 		
 		$this->load->view('include/header', $data);
-		$this->load->view('hiremetro/ads', $data);		
+		$this->load->view('hiremetro/ads', $data);
+		$this->load->view('include/footer', $data);
 	}
 	
 	public function view_faqs(){
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/faqs');
+		$this->load->view('include/footer');
 		
 	}
 	
@@ -548,13 +566,20 @@ class Hiremetro extends CI_Controller {
 		$id = $this->session->userdata('id');
 		
 		$this->hiremetrodbase->deactivate($id);
+		$this->session->sess_destroy();
+		$this->session->set_userdata('logged_in', FALSE);
+		
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/home');
-		
-		session_destroy();
-		$_SESSION = "";
+		$this->load->view('include/footer', $data);
 	}
 		
+	
+	public function admin(){
+		$data['title'] = "Hiremetro";		
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_home', $data);
 	}
 
+}

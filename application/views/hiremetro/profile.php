@@ -37,6 +37,28 @@
 		</div>
 	</nav>
 	
+	<!-- Modal for decativation-->
+		<div class="modal fade" id="deactivation" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> DEACTIVATE </h4>
+						<p>Attention</p>
+					</div>
+					<div class="modal-body text-center">
+						<p>Are you really sure ?</p>
+					</div>
+					<div class="modal-footer text-center">
+						<a href="<?php echo base_url('hiremetro/deactivate')?>"><button class="btn btn-default">Yes</button></a>
+						<button class="btn btn-default" data-dismiss="modal">No</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
 	<div class="container-fluid pagee" style="background-image: url('images/bg.png'); min-height: 500px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
 		
 
@@ -63,7 +85,7 @@
 					</div>
 					
 					<div class="col-md-3 text-center" >
-						<h2><?php echo $employee['fname'].$employee['mname'].$employee['lname'];?></h2>
+						<h2><?php echo $employee['fname'].' '.$employee['mname'].' '.$employee['lname'];?></h2>
 						<h4><span class="glyphicon glyphicon-envelope"></span> <?php echo $employee['email'];?></p>
 						<h4><span class="glyphicon glyphicon-map-marker red"></span><?php echo $employee['worker_location'];?></p>
 						<h4><span class="glyphicon glyphicon-phone"></span> <?php echo $employee['contact'];?></p>	
@@ -103,14 +125,33 @@
 						<div class "col-md-8">
 						<form action="<?php echo base_url('hiremetro/update_work');?>" method="post">
 							<br />
+							
+							<div class="col-xs-4 text-center" style="margin-left: 300px;">
 							Work Title: 
-							<input type="text" name="work_title" value="<?php echo $employee['work_title']; ?>" /> <br /><br />
-							Work Description: 
+							<select class="form-control" id="sel1" name="work_title">
+									<option>Bartender</option>
+									<option>Carpenter</option>
+									<option>Cook</option>
+									<option>Driver</option>
+									<option>Gardener</option>
+									<option>Janitor</option>
+									<option>Maid</option>
+									<option>Masseuse</option>
+									<option>Nanny</option>
+									<option>Plumber</option>
+									<option>Tutor</option>
+									<option>Waiter</option>
+								  </select>
+							</div>
+							<br/>
+							<br/>	
+							<br/>
+							Work Description: <br/>
 							<input type="text" name="work_description" value="<?php echo $employee['work_description']; ?>" /> <br /><br />
-							Work Location: 
-							<input type="text" name="worker_location" value="<?php echo $employee['worker_location']; ?>" /> <br /><br />
-							Work Pay: 
+							Work Pay: <br/>	
 							<input type="number" name="work_pay" value="<?php echo $employee['work_pay']; ?>"/> <br /><br />  
+							Work Location: <br/>
+							<input type="text" name="worker_location" value="<?php echo $employee['worker_location']; ?>" /> <br /><br />
 						<button type="submit" class="btn btn-default" name="update">UPDATE</button>
 						<br/>
 						</div>
@@ -151,9 +192,7 @@
 					<br/>
 					<p>Are you sure ?</p>
 					<p>By pressing the DEACTIVATE button, all your records will all be deleted ..</p>
-					<form action="<?php echo base_url('hiremetro/deactivate')?>" method="post">
-						<button type="submit" class="btn btn-danger" name="deact">DEACTIVATE</button>
-					</form>
+						<button class="btn btn-danger" data-toggle="modal" data-target="#deactivation">DEACTIVATE</button>
 					<br/>
 				</div>
 				<br/>
@@ -186,39 +225,4 @@
 		</script>
 
 		
-		<!-- footer -->
 		
-		<div class="row" id="footer">
-			
-			<div class="col-lg-1">
-			</div>
-			<div class="col-lg-1">
-				</br>
-				<a>About Us</a>
-				<br /><a>Comments</a>
-				<br /><a>Suggestions</a>
-				<br />
-			</div>
-			<div class="col-lg-1">
-				</br>
-				<a>Special Offer</a>
-				<br /><a>Discount</a>
-				<br /><a>Freebies</a>
-				<br />
-			</div>
-			<div class="col-lg-6 text-center">
-				<br />
-				<p>hiremetro © 2017 | Designed by Group 4</p>
-			</div>
-			<div class="col-lg-2 ">
-				<br />
-				<p><img src="<?php echo base_url('images/fb.ico')?>" alt=""> facebook.com/hiremetro</p>
-				<p><img src="<?php echo base_url('images/twitter.png')?>" alt=""> @hiremetro</p>
-				<p><img src="<?php echo base_url('images/gmail.ico')?>" alt=""> hiremetro@gmail.com</p> 
-			</div>
-			<div class="col-lg-1">
-			</div>
-			
-		</div>
-		
-	</div>
