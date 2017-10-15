@@ -259,16 +259,17 @@
 				foreach((array)$employees as $e){
 					$dob= $e['birthday'];
 					$dob= ageCalculator($dob);
+					if($e['status'] == 'show'){
 					echo '
 						<div class="col-md-3 ">
 						</div>				
 							
 						<div class="col-md-8">
-							<div class="col-md-2">
-								<a href=""><img src="images/driver.png" class="img-responsive" alt="" ></a>
+							<div class="col-md-3 dp">
+								<img src="'; echo base_url($e['picture']); echo '" alt="">
 							</div>		
 								
-							<div class="col-md-7" id="search_result">
+							<div class="col-md-6" id="search_result">
 								<a href="'; echo base_url('hiremetro/employee_profile').'?username='.$e['username'].'"><h3>'
 								.$e['lname'].', '.$e['fname'].' '.$e['mname'].'</h3></a>
 								<h4 style="color:teal;"> '.$e['work_title'].' </h4>
@@ -281,7 +282,10 @@
 						</div>	
 							
 						<div class="col-md-1 ">
-						</div>	';				
+						</div>
+						<br/>';
+					}
+					
 				}
 			?>
 			

@@ -78,8 +78,8 @@
 					<div class="col-md-3">
 					</div>
 					
-					<div class="col-md-3 text-center">
-						<img src="<?php echo base_url('images/carpenter.png')?>" alt="">
+					<div class="col-md-3 text-center dp">
+						<img src="<?php echo base_url($employee['picture'])?>" alt="">
 						<h4> CARPENTER </h4>
 						<br /> <br />					
 					</div>
@@ -153,11 +153,26 @@
 							Work Location: <br/>
 							<input type="text" name="worker_location" value="<?php echo $employee['worker_location']; ?>" /> <br /><br />
 						<button type="submit" class="btn btn-default" name="update">UPDATE</button>
+						</form>
+						<br/>
+						<br/>
+						<form action="<?php echo base_url('hiremetro/update_status');?>" method="post">
+						<?php
+							if($employee['status'] == 'show'){
+								echo 'Click this button to hide your ad (eg. if you are currently hired)<br/>
+								<button type="submit" class="btn btn-danger" name="status" value="hide">HIDE</button></a>';
+							}
+							else{
+								echo 'Click this button to show your ad <br/>';
+								echo '<button type="submit" class="btn btn-danger" name="status" value="show">SHOW</button>';
+							};
+						?>
+						</form>
 						<br/>
 						</div>
 						<div class "col-md-2">
 						</div>
-						</form>
+						
 					</div>
 					</br>
 					</div>

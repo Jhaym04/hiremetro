@@ -38,6 +38,39 @@
 		
 		
 	}
+	
+	if($this->session->userdata('forgot_password') == 1){
+		
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#forgotPassword').modal('show');
+			});
+		</script>";
+	}
+	
+	if($this->session->userdata('forgot_password') == 'TRUE'){
+		
+		$this->session->unset_userdata('forgot_password');
+		
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#correct_forgotpassword').modal('show');
+			});
+		</script>";
+		
+	}
+	
+	if($this->session->userdata('forgot_password') == 'FALSE'){
+		
+		$this->session->unset_userdata('forgot_password');
+		
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#wrong_forgotpassword').modal('show');
+			});
+		</script>";
+		
+	}
 ?>
 	
 	

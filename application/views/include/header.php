@@ -96,7 +96,70 @@
 			</div>
 		</div>
 	
-	<!-- Modal for login-->
+	<!-- Modal for forgotPassword-->
+		<div class="modal fade" id="forgotPassword" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> FORGOT PASSWORD </h4>
+					</div>
+					<div class="modal-body text-center">
+						<form action="<?php echo base_url('hiremetro/login_forgotpassword')?>" method="post">
+							<p>Please enter your email</p>
+							<div class="form-group">
+								<input type="email" class="form-control" name="email" placeholder="Email"> 
+							</div>
+					</div>
+					<div class="modal-footer text-center">
+						<button type="submit" class="btn btn-default">Submit</button></a>
+						<button class="btn btn-default" data-dismiss="modal">No</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!-- Modal for forgotPassword_correct-->
+		<div class="modal fade" id="correct_forgotpassword" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> FORGOT PASSWORD </h4>
+					</div>
+					<div class="modal-body text-center">
+						<p>A link has been sent to your Email</p>
+					</div>
+					<div class="modal-footer text-center">
+						<button class="btn btn-default" data-dismiss="modal">Ok</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!-- Modal for forgotPassword_wrong-->
+		<div class="modal fade" id="wrong_forgotpassword" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content" id="login">
+					<div class="modal-header text-center" id="header">
+						<button type="button" class="close" data-dismiss="modal"> &times; </button>
+						<h4 class="modal-title"> FORGOT PASSWORD </h4>
+					</div>
+					<div class="modal-body text-center">
+						<p>The email you just entered isn't associated with any account</p>
+					</div>
+					<div class="modal-footer text-center">
+						<form action="<?php echo base_url('hiremetro/login_forgotpassword')?>" method="post">
+						<button type="submit" class="btn btn-default" name="retry" value="">RETRY</button>
+						<button class="btn btn-default" data-dismiss="modal">Close</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<!-- Modal for wrong login-->
 		<div class="modal fade" id="loginFALSE" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content" id="login">
@@ -116,7 +179,7 @@
 			</div>
 		</div>
 	
-	<!-- Modal for wrong login-->
+	<!-- Modal for login-->
 		<div class="modal fade" id="loginModal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content" id="login">
@@ -136,7 +199,7 @@
 								</div>
 								<br />
 								<div class="text-center">
-									<a href=""> Forgot Password </a>
+									<a href="<?php echo base_url('hiremetro/login_forgotpassword');?>?forgotpassword=1"> Forgot Password </a>
 								</div>
 							</div>
 					</div>
@@ -215,7 +278,7 @@
 						<p>Enter your work details !</p>
 					</div>
 					<div class="modal-body">
-						<form action="<?php echo base_url('hiremetro/signup2')?>" method="post">
+						<?php echo form_open_multipart('hiremetro/signup2');?>
 							<div class="form-vertical">
 								<div class="form-group form-inline">
 									<input type="text" class="form-control" name="username" placeholder="Username" maxlength="50"> 
@@ -247,6 +310,7 @@
 								<div class="form-group">
 									<input type="text" class="form-control" name="work_location" placeholder="Service Location" maxlength="100"> 
 								</div>
+								<input type="file" name="userfile" size="20" />									
 							</div>
 					</div>
 					<div class="modal-footer text-center">
