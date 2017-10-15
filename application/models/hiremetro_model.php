@@ -221,7 +221,19 @@ class hiremetro_model extends CI_Model{
 		$this->db->delete('work_details');
 	}
 	
-	
+	public function confirm_email($email){
+		$this->db->select('*');
+		$this->db->from('login_credentials');
+		$this->db->where('email', $email);
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0){
+			return 'TRUE';
+		}
+		else{
+			return 'FALSE';
+		}
+	}
 	
 }	
 
