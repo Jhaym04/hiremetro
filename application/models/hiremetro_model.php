@@ -44,10 +44,16 @@ class hiremetro_model extends CI_Model{
 		$this->db->order_by('employee_id', 'desc');
 			
 		$query = $this->db->get();
+		
+		if($query->num_rows() < 1){
+			return 1;
+		}
+		else{
+			$data = $query->result_array();
+			return $data[0]['employee_id'];
+		}
 			
-		$data = $query->result_array();
-			
-		return $data[0]['employee_id'];
+		
 	}
 	
 	public function signup($data, $table){
@@ -84,7 +90,12 @@ class hiremetro_model extends CI_Model{
 		$this->db->join('work_details', 'employee_information.employee_id = work_details.employee_id');
 		$query = $this->db->get();
 		
-		return $query->result_array();
+		if($query->num_rows() < 1){
+			return 'false';
+		}
+		else{
+			return $query->result_array();
+		}
 		
 	}
 	
@@ -111,7 +122,12 @@ class hiremetro_model extends CI_Model{
 		$this->db->where('work_title', $category);
 		$query = $this->db->get();
 		
-		return $query->result_array();
+		if($query->num_rows() < 1){
+			return 'false';
+		}
+		else{
+			return $query->result_array();
+		}
 	}
 	
 	public function search_by_id($id){
