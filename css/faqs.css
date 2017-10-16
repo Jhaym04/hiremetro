@@ -17,7 +17,7 @@
 	background-image: url('images/bg.png');
 	
 	/* Set a specific height */
-    min-height: 500px; 
+    min-height: 1000px; 
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -31,13 +31,7 @@
       width: 100%;
 	  z-index: 10;
  }
- 
- .navbar-custom #faqsnav{
-    background-color:#3b8686;
-    color: white;
-    border-radius:0;
-	height: 200px;
-}
+
 
 .navbar-custom .navbar-nav > li > a {
     color: white;
@@ -121,9 +115,9 @@ div.panel {
     transition: max-height 0.2s ease-out;
 }
 
-#faqs {
-	width: 650px;
-	height: 130px;
+#faqs img{
+	margin-top: 150px;
+	margin-bottom: -200px;
 }	
 
 #acc { 
