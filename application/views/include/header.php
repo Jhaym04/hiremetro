@@ -33,12 +33,22 @@
 	<link rel="stylesheet" href="<?php echo base_url('css/faqs.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/soffersterms.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/about.css')?>">
+
+	
+	<script>
+	$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").delay(1500).fadeOut("slow");;
+	});
+	</script>
 	
 </head>
 <body>
 	<!-- Navbar -->
 	
-	
+	<div class="se-pre-con text-center">
+		<img src="<?php echo base_url('images/loader-64x/Preloader_4.gif')?>">
+	</div>
 	
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header" id="logo" >
@@ -282,7 +292,7 @@
 							<div class="form-vertical">
 								<div class="form-group form-inline">
 									<input type="text" class="form-control" name="username" placeholder="Username" maxlength="50"> 
-									<input type="password" class="form-control" name="password" placeholder="Password" maxlength="25">  
+									<input type="password" class="form-control" name="password" placeholder="Password" maxlength="25">   
 								</div>
 								<div class="form-group">
 								  <label for="sel1">Choose Work Category</label>
@@ -309,6 +319,9 @@
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control" name="work_location" placeholder="Service Location" maxlength="100"> 
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="work_language" placeholder="Language Spoken eg.(Tagalog)" maxlength="50"> 
 								</div>
 								<input type="file" name="userfile" size="20" />									
 							</div>

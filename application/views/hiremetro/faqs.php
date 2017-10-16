@@ -1,7 +1,7 @@
 <!--faq-->
 
 
-<nav class="navbar navbar-custom navbar-fixed-top" id="faqsnav">
+<nav class="navbar navbar-custom navbar-fixed-top">
 		<div >
 				<center><img class="center" src="<?php echo base_url('images/logo.png')?>" ></center>
 				<!-- <center><img class="faqc" id="faqs" src="<?php echo base_url('images/faqs.png')?>" ></center>-->
@@ -67,40 +67,40 @@
 						  way and by posting an add through their mobile phone or web.</p>
 						</div>
 
-					<button class="accordion"  >How do I find employee?</button>
+					<button class="accordion"  >How do I find employees?</button>
 						<div class="panel">
 						  <p>Using the search bar and inputting the kind of work, this will redirect you to the 
 						  employer related to the kind of service you needed.</p>
 						</div>
-					<button class="accordion"  >Question</button>
+					<button class="accordion"  >How will I know if the Employer is legit?</button>
 						<div class="panel">
-						  <p>Answer</p>
+						  <p>By clicking the profile ad of the employee there is a button which you can download 
+						  the resume as well as the credentials of the employe</p>
 						</div>
-					<button class="accordion"  >Question</button>
+					<button class="accordion" >Is there a cost for being placed with HireMetro?</button>
 						<div class="panel">
-						  <p>Answer</p>
+						  <p>No. HireMetro works on your behalf to locate your customer at no cost to you. To get started, create your account. </p>
 						</div>
 				</div>
 			
 				<div class="col-md-6">
 
-					<button class="accordion" >How will I know if the Employee is legit?</button>
+					<button class="accordion" >How do i contact my clients and customers?</button>
 						<div class="panel">
-						  <p>By clicking the profile ad of the employee there is a button which you can download 
-						  the resume as well as the credentials of the employee</p>
+						  <p>Your profile must have a contact number and interested clients can also reach you through the message button.</p>
 						</div>
 
-					<button class="accordion" >Question</button>
+					<button class="accordion" >Is it neccesary to post credentials and resume?</button>
 						<div class="panel" >
-						  <p>Answer</p>
+						  <p>Yes, to verify your personal work experience and expertise.</p>
 						</div>
-					<button class="accordion" >Question</button>
+					<button class="accordion" >Why was my ad removed?</button>
 						<div class="panel" >
-						  <p>Answer</p>
+						  <p>Your ad was removed because it was been reported or  its an ad for prohibited service.</p>
 						</div>
-					<button class="accordion" >Question</button>
+					<button class="accordion" >How do I edit my account?</button>
 						<div class="panel" >
-						  <p>Answer</p>
+						  <p>You have to Log-In to your HireMetro account,there, you can edit your personal information  and update the content of your ad</p>
 						</div>
 				</div>	
 				<div class="col-md-1 ">

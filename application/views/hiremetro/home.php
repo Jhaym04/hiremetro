@@ -77,7 +77,7 @@
 	
 	<!-- Parallax Background -->
 	
-	<div class="container-fluid pagee" style="background-image: url('images/bg.png'); min-height: 50%; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
+	<div class="container-fluid" style="background-image: url('<?php echo base_url('images/bg.png');?>'); min-height: 50%; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
 			
 		<!-- NEED HELP? -->
 		
@@ -123,7 +123,7 @@
 				
 				<div class="row text-center " id="search">
 					<form action="<?php echo base_url('hiremetro/search') ?>" method="post">
-						<input type="text" name="valueToSearch" placeholder="Search">
+						<input type="text" name="valueToSearch" placeholder="Search" class = "glyphicon glyphicon-search">
 						<input type="submit" name="search" value="Search">
 					</form>
 				</div>

@@ -119,62 +119,64 @@
 
 				<button class="accordion"  >Manage Ads</button>
 					<div class="panel text-center">
-					<div class="row">
-						<div class "col-md-2">
-						</div>
-						<div class "col-md-8">
-						<form action="<?php echo base_url('hiremetro/update_work');?>" method="post">
-							<br />
-							
-							<div class="col-xs-4 text-center" style="margin-left: 300px;">
-							Work Title: 
-							<select class="form-control" id="sel1" name="work_title">
-									<option>Bartender</option>
-									<option>Carpenter</option>
-									<option>Cook</option>
-									<option>Driver</option>
-									<option>Gardener</option>
-									<option>Janitor</option>
-									<option>Maid</option>
-									<option>Masseuse</option>
-									<option>Nanny</option>
-									<option>Plumber</option>
-									<option>Tutor</option>
-									<option>Waiter</option>
-								  </select>
+						<div class="row">
+							<div class "col-md-2">
 							</div>
+							<div class "col-md-8">
+							<form action="<?php echo base_url('hiremetro/update_work');?>" method="post">
+								<br />
+								
+								<div class="col-xs-4 text-center" style="margin-left: 300px;">
+								Work Title: 
+								<select class="form-control" id="sel1" name="work_title">
+										<option>Bartender</option>
+										<option>Carpenter</option>
+										<option>Cook</option>
+										<option>Driver</option>
+										<option>Gardener</option>
+										<option>Janitor</option>
+										<option>Maid</option>
+										<option>Masseuse</option>
+										<option>Nanny</option>
+										<option>Plumber</option>
+										<option>Tutor</option>
+										<option>Waiter</option>
+									  </select>
+								</div>
+								<br/>
+								<br/>	
+								<br/>
+								Work Description: <br/>
+								<input type="text" name="work_description" value="<?php echo $employee['work_description']; ?>" /> <br /><br />
+								Work Pay: <br/>	
+								<input type="number" name="work_pay" value="<?php echo $employee['work_pay']; ?>"/> <br /><br />  
+								Work Location: <br/>
+								<input type="text" name="worker_location" value="<?php echo $employee['worker_location']; ?>" /> <br /><br />
+								Language Spoken: <br/>
+								<input type="text" name="work_language" value="<?php echo $employee['work_language']; ?>" /> <br /><br />
+							<button type="submit" class="btn btn-default" name="update">UPDATE</button>
+							</form>
 							<br/>
-							<br/>	
 							<br/>
-							Work Description: <br/>
-							<input type="text" name="work_description" value="<?php echo $employee['work_description']; ?>" /> <br /><br />
-							Work Pay: <br/>	
-							<input type="number" name="work_pay" value="<?php echo $employee['work_pay']; ?>"/> <br /><br />  
-							Work Location: <br/>
-							<input type="text" name="worker_location" value="<?php echo $employee['worker_location']; ?>" /> <br /><br />
-						<button type="submit" class="btn btn-default" name="update">UPDATE</button>
-						</form>
-						<br/>
-						<br/>
-						<form action="<?php echo base_url('hiremetro/update_status');?>" method="post">
-						<?php
-							if($employee['status'] == 'show'){
-								echo 'Click this button to hide your ad (eg. if you are currently hired)<br/>
-								<button type="submit" class="btn btn-danger" name="status" value="hide">HIDE</button></a>';
-							}
-							else{
-								echo 'Click this button to show your ad <br/>';
-								echo '<button type="submit" class="btn btn-danger" name="status" value="show">SHOW</button>';
-							};
-						?>
-						</form>
-						<br/>
+							<form action="<?php echo base_url('hiremetro/update_status');?>" method="post">
+							<?php
+								if($employee['status'] == 'show'){
+									echo 'Click this button to hide your ad (eg. if you are currently hired)<br/>
+									<button type="submit" class="btn btn-danger" name="status" value="hide">HIDE</button></a>';
+								}
+								else{
+									echo 'Click this button to show your ad <br/>';
+									echo '<button type="submit" class="btn btn-danger" name="status" value="show">SHOW</button>';
+								};
+							?>
+							</form>
+							<br/>
+							</div>
+							<div class "col-md-2">
+							</div>
+							
 						</div>
-						<div class "col-md-2">
-						</div>
-						
-					</div>
-					</br>
+						</br>
 					</div>
 				<button class="accordion" >Notification Settings</button>
 					<div class="panel">
@@ -183,7 +185,7 @@
 
 				<button class="accordion" >Account Settings</button>
 					<div class="panel text-center">
-					<form action="<?php echo base_url('hiremetro/update_information');?>" method="post">
+					<?php echo form_open_multipart('hiremetro/update_information');?>
 						<br />
 						First name 
 						<input type="text" name="fname" value="<?php echo $employee['fname'];?>" /> <br /><br />
@@ -196,8 +198,8 @@
 						Password: 
 						<input type="password" name="password" value="<?php echo $employee['password']?>" /> <br /><br /> 
 						Picture: 
-						<button type="button"> Upload Picture </button> <br /><br /> 
-					<button type="submit" class="btn btn-default" name="update">UPDATE</button>
+						<input type="file" name="userfile" size="20" />
+						<button type="submit" class="btn btn-default" name="update">UPDATE</button>
 					</form>
 					<br>
 					</div>

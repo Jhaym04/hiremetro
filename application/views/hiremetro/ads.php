@@ -168,7 +168,10 @@
 								}
 								?>
 							</h4>
-							<h4>Languages Spoken: 
+							<h4>Languages Spoken: <?php foreach((array)$employees as $e) {
+								echo ''.$e['work_language'].'';
+								}
+								?>
 							</h4>
 							
 						</div>
