@@ -67,6 +67,7 @@ class Hiremetro extends CI_Controller {
 				'work_description' => $wd[0]['work_description'],
 				'worker_location' => $wd[0]['worker_location'],
 				'work_pay' => $wd[0]['work_pay'],
+				'work_language' => $wd[0]['work_language'],
 				'status' => $wd[0]['status'],
 				'fname' => $ei[0]['fname'],
 				'mname' => $ei[0]['mname'],
@@ -137,9 +138,9 @@ class Hiremetro extends CI_Controller {
 		$bday = $y.'-'.$m.'-'.$d;
 		
 		$newdata = array(
-			'fname' => $_POST['firstname'],
-			'mname' => $_POST['middlename'],
-			'lname' => $_POST['lastname'],
+			'fname' => ucfirst($_POST['firstname']),
+			'mname' => ucfirst($_POST['middlename']),
+			'lname' => ucfirst($_POST['lastname']),
 			'address' => $_POST['address'],
 			'contact' => $_POST['contact_number'],
 			'email' => $_POST['email'],
@@ -180,15 +181,22 @@ class Hiremetro extends CI_Controller {
 			$this->load->library('upload', $config); //Load the upload CI library
 			
 			if (!$this->upload->do_upload('userfile')){
-			$uploadError = array('upload_error' => $this->upload->display_errors()); 
-			$this->set_flashdata('uploadError', $uploadError, 'hiremetro/home.php'); //If for some reason the upload could not be done, returns the error in a flashdata and redirect to the page you specify in $urlYouWantToReturn
-			exit;
-			}
+				$uploadError = array('upload_error' => $this->upload->display_errors()); 
+				$this->set_flashdata('uploadError', $uploadError, 'hiremetro/home.php'); //If for some reason the upload could not be done, returns the error in a flashdata and redirect to the page you specify in $urlYouWantToReturn
+				exit;
+			};
 			
 			$file_info = $this->upload->data('');
 			$file_name = $file_info['file_name'];
-			$file_name = './images/user_image/'.$file_name.'';
+			$config['image_library'] = 'gd2';
+			$config['source_image'] = '/images/user_image/'.$file_name.'';
+			$config['maintain_ratio'] = TRUE;
+			$config['width'] = 164;
+			$config['height'] = 163;
+			$file_name = '/images/user_image/'.$file_name.'';
 			
+			$this->load->library('image_lib', $config);
+			$this->image_lib->resize();
 			
 			$data = array(
 				'employee_id' => ($id),
@@ -200,7 +208,7 @@ class Hiremetro extends CI_Controller {
 				'sex' => $this->session->userdata('sex'),
 				'contact' => $this->session->userdata('contact'),
 				'email' => $this->session->userdata('email'),
-				'picture' => ($file_name)
+				'picture' => ($file_name),
 			);
 			
 			$this->hiremetrodbase->signup($data, $table);
@@ -213,7 +221,9 @@ class Hiremetro extends CI_Controller {
 				'work_description' => $this->input->post('work_description'),
 				'work_pay' => $this->input->post('work_pay'),
 				'worker_location' => $this->input->post('work_location'),
-				'date_posted' => (date("Y-m-d"))
+				'work_language' => $this->input->post('work_language'),
+				'date_posted' => (date("Y-m-d")),
+				'status' => 'show'
 			);
 			
 			$this->hiremetrodbase->signup($data, $table);
@@ -284,35 +294,42 @@ class Hiremetro extends CI_Controller {
 			
 			$employees = null;
 			
-			foreach($result as $r){
-				$id = $r['employee_id'];
-				
-			}
+			if($result != 'false'){
 			
-			foreach($result as $r){
+				foreach($result as $r){
+					$id = $r['employee_id'];
+					
+				}
 				
-				$id = $r['employee_id'];
-				$username = $this->hiremetrodbase->get_username($id);
-				$table = "work_details";
-				$wd = $this->hiremetrodbase->get_employee_information($id,$table);
+				foreach($result as $r){
+					
+					$id = $r['employee_id'];
+					$username = $this->hiremetrodbase->get_username($id);
+					$table = "work_details";
+					$wd = $this->hiremetrodbase->get_employee_information($id,$table);
+					
+					$info = array(
+						'employee_id' => $r['employee_id'],
+						'lname' => $r['lname'],
+						'fname' => $r['fname'],
+						'mname' => $r['mname'],
+						'address' => $r['address'],
+						'sex' => $r['sex'],
+						'birthday' => $r['birthday'],
+						'description' => $wd[0]['work_description'],
+						'username' => ($username),
+						'work_title' => $wd[0]['work_title'],
+						'picture' => $r['picture'],
+						'status' => $wd[0]['status']
+					);
+					$employees[] = $info;
+				}
+				$data['employees'] = $employees;
 				
-				$info = array(
-					'employee_id' => $r['employee_id'],
-					'lname' => $r['lname'],
-					'fname' => $r['fname'],
-					'mname' => $r['mname'],
-					'address' => $r['address'],
-					'sex' => $r['sex'],
-					'birthday' => $r['birthday'],
-					'description' => $wd[0]['work_description'],
-					'username' => ($username),
-					'work_title' => $wd[0]['work_title'],
-					'picture' => $r['picture'],
-					'status' => $wd[0]['status']
-				);
-				$employees[] = $info;
 			}
-			$data['employees'] = $employees;
+			else{
+				$data['noresult'] = "No results found";
+			}
 		}
 		
 		$this->load->view('include/header', $data);
@@ -335,42 +352,48 @@ class Hiremetro extends CI_Controller {
 		
 		$result = $this->hiremetrodbase->search_category($category);
 		
-		foreach($result as $r){
-			$id = array(
-				'employee_id' => $r['employee_id'],
-				'work_description' => $r['work_description'],
-				'work_title' => $r['work_title'],
-				'status' => $r['status']
-			);
+		if ($result != 'false'){
+		
+			foreach($result as $r){
+				$id = array(
+					'employee_id' => $r['employee_id'],
+					'work_description' => $r['work_description'],
+					'work_title' => $r['work_title'],
+					'status' => $r['status']
+				);
+				
+				$work[] = $id;
+			}
 			
-			$work[] = $id;
+			$c = count($work);
+			
+			for($a=0;$a<$c;$a++){
+				
+				$result = $this->hiremetrodbase->search_by_id($work[$a]['employee_id']);
+				$username = $this->hiremetrodbase->get_username($work[$a]['employee_id']);
+				
+				$details = array(
+					'fname' => $result[0]['fname'],
+					'lname' => $result[0]['lname'],
+					'mname' => $result[0]['mname'],
+					'address' => $result[0]['address'],
+					'birthday' => $result[0]['birthday'],
+					'description' => $work[$a]['work_description'],
+					'sex' => $result[0]['sex'],
+					'username' => $username,
+					'work_title' => $work[$a]['work_title'],
+					'status' => $work[$a]['status'],
+					'picture' => $result[0]['picture']
+				);
+				
+				$employee[] = $details;
+			}
+			
+			$data['employees'] = $employee;
 		}
-		
-		$c = count($work);
-		
-		for($a=0;$a<$c;$a++){
-			
-			$result = $this->hiremetrodbase->search_by_id($work[$a]['employee_id']);
-			$username = $this->hiremetrodbase->get_username($work[$a]['employee_id']);
-			
-			$details = array(
-				'fname' => $result[0]['fname'],
-				'lname' => $result[0]['lname'],
-				'mname' => $result[0]['mname'],
-				'address' => $result[0]['address'],
-				'birthday' => $result[0]['birthday'],
-				'description' => $work[$a]['work_description'],
-				'sex' => $result[0]['sex'],
-				'username' => $username,
-				'work_title' => $work[$a]['work_title'],
-				'status' => $work[$a]['status'],
-				'picture' => $result[0]['picture']
-			);
-			
-			$employee[] = $details;
+		else{
+				$data['noresult'] = "No results found";
 		}
-		
-		$data['employees'] = $employee;
 		
 		$this->load->view('include/header');
 		$this->load->view('hiremetro/search' ,$data);
@@ -399,6 +422,7 @@ class Hiremetro extends CI_Controller {
 				'work_description' => $wd[0]['work_description'],
 				'worker_location' => $wd[0]['worker_location'],
 				'work_pay' => $wd[0]['work_pay'],
+				'work_language' => $wd[0]['work_language'],
 				'status' => $wd[0]['status'],
 				'fname' => $ei[0]['fname'],
 				'mname' => $ei[0]['mname'],
@@ -424,12 +448,38 @@ class Hiremetro extends CI_Controller {
 		
 		$id = $this->session->userdata('id');
 		
+		$config['upload_path'] = './images/user_image/'; //The path where the image will be save
+		$config['allowed_types'] = 'jpeg|jpg|png'; //Images extensions accepted
+		$config['overwrite'] = TRUE; //If exists an image with the same name it will overwrite. Set to  false if don't want to overwrite
+		$this->load->library('upload', $config); //Load the upload CI library
+			
+		if (!$this->upload->do_upload('userfile')){
+			$uploadError = array('upload_error' => $this->upload->display_errors()); 
+			$this->set_flashdata('uploadError', $uploadError, 'hiremetro/home.php'); //If for some reason the upload could not be done, returns the error in a flashdata and redirect to the page you specify in $urlYouWantToReturn
+			exit;
+		};
+			
+		$file_info = $this->upload->data('');
+		$file_name = $file_info['file_name'];
+			
+		$config['image_library'] = 'gd2';
+		$config['source_image'] = '/images/user_image/'.$file_name.'';
+		$config['maintain_ratio'] = TRUE;
+		$config['width'] = 164;
+		$config['height'] = 163;
+		
+		$file_name = '/images/user_image/'.$file_name.'';
+			
+		$this->load->library('image_lib', $config);
+		$this->image_lib->resize();
+		
 		$table = "employee_information";
 		
 		$info = array(
 			'fname' => $this->input->post('fname'),
 			'mname' => $this->input->post('mname'),
-			'lname' => $this->input->post('lname')
+			'lname' => $this->input->post('lname'),
+			'picture' => $file_name
 		);
 
 		$this->hiremetrodbase->update_details ($id,$table,$info);
@@ -491,7 +541,8 @@ class Hiremetro extends CI_Controller {
 			'work_title' => $this->input->post('work_title'),
 			'work_description' => $this->input->post('work_description'),
 			'worker_location' => $this->input->post('worker_location'),
-			'work_pay' => $this->input->post('work_pay')
+			'work_pay' => $this->input->post('work_pay'),
+			'work_language' => $this->input->post('work_language')
 			);
 			
 			$this->hiremetrodbase->update_details($id,$table,$info);
@@ -509,6 +560,7 @@ class Hiremetro extends CI_Controller {
 				'work_description' => $this->input->post('work_description'),
 				'worker_location' => $this->input->post('worker_location'),
 				'work_pay' => $this->input->post('work_pay'),
+				'work_language' => $this->input->post('work_language'),
 				'fname' => $ei[0]['fname'],
 				'mname' => $ei[0]['mname'],
 				'lname' => $ei[0]['lname'],
@@ -539,12 +591,38 @@ class Hiremetro extends CI_Controller {
 			
 			$table = "employee_information";
 			
+			$config['upload_path'] = './images/user_image/'; //The path where the image will be save
+			$config['allowed_types'] = 'jpeg|jpg|png'; //Images extensions accepted
+			$config['overwrite'] = TRUE; //If exists an image with the same name it will overwrite. Set to  false if don't want to overwrite
+			$this->load->library('upload', $config); //Load the upload CI library
+				
+			if (!$this->upload->do_upload('userfile')){
+				$uploadError = array('upload_error' => $this->upload->display_errors()); 
+				$this->set_flashdata('uploadError', $uploadError, 'hiremetro/home.php'); //If for some reason the upload could not be done, returns the error in a flashdata and redirect to the page you specify in $urlYouWantToReturn
+				exit;
+			};
+				
+			$file_info = $this->upload->data('');
+			$file_name = $file_info['file_name'];
+				
+			$config['image_library'] = 'gd2';
+			$config['source_image'] = '/images/user_image/'.$file_name.'';
+			$config['maintain_ratio'] = TRUE;
+			$config['width'] = 164;
+			$config['height'] = 163;
+			
+			$file_name = '/images/user_image/'.$file_name.'';
+				
+			$this->load->library('image_lib', $config);
+			$this->image_lib->resize();
+			
 			$info = array(
 			'fname' => $this->input->post('fname'),
 			'mname' => $this->input->post('mname'),
 			'lname' => $this->input->post('lname'),
 			'email' => $this->input->post('email'),
-			'contact' => $this->input->post('contact')
+			'contact' => $this->input->post('contact'),
+			'picture' => $file_name
 			);
 			
 			$this->hiremetrodbase->update_details($id,$table,$info);
@@ -557,13 +635,15 @@ class Hiremetro extends CI_Controller {
 				'work_description' => $wd[0]['work_description'],
 				'worker_location' => $wd[0]['worker_location'],
 				'work_pay' => $wd[0]['work_pay'],
+				'work_language' => $wd[0]['work_language'],
 				'fname' => $this->input->post('fname'),
 				'mname' => $this->input->post('mname'),
 				'lname' => $this->input->post('lname'),
 				'email' => $this->input->post('email'),
 				'contact' => $this->input->post('contact'),
 				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password')
+				'password' => $this->input->post('password'),
+				'picture' => $file_name
 			);
 			
 			$data['employee'] = $infos;
@@ -605,6 +685,7 @@ class Hiremetro extends CI_Controller {
 					'work_title' => $alldetails[0]['work_title'],
 					'work_description' => $alldetails[0]['work_description'],
 					'worker_location' => $alldetails[0]['worker_location'],
+					'work_language' => $alldetails[0]['work_language'],
 					'picture' => $allinfo[0]['picture']
 						);
 				$employees[] = $info;
