@@ -720,13 +720,6 @@ class Hiremetro extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 		
-	
-	public function admin(){
-		$data['title'] = "Hiremetro";		
-		$this->load->view('include/header_admin', $data);
-		$this->load->view('hiremetro/admin_home', $data);
-	}
-	
 	public function update_status(){
 		$id = $this->session->userdata('id');
 		$table = "work_details";
@@ -774,6 +767,151 @@ class Hiremetro extends CI_Controller {
 		
 		$this->load->view('include/header',$data);
 		$this->load->view('hiremetro/profile');
+	}
+	
+	public function admin(){
+		$data['title'] = "Hiremetro";
+
+		$category = "Bartender";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['bartender'] = $result;
+		$total = $result;
+		
+		$category = "Carpenter";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['carpenter'] = $result;
+		$total= $total+$result;
+		
+		$category = "Cook";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['cook'] = $result;
+		$total= $total+$result;
+		
+		$category = "Driver";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['driver'] = $result;
+		$total= $total+$result;
+		
+		$category = "Gardener";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['gardener'] = $result;
+		$total= $total+$result;
+		
+		$category = "Janitor";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['janitor'] = $result;
+		$total= $total+$result;
+		
+		$category = "Maid";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['maid'] = $result;
+		$total= $total+$result;
+		
+		$category = "Masseuse";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['masseuse'] = $result;
+		$total= $total+$result;
+		
+		$category = "Nanny";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['nanny'] = $result;
+		$total= $total+$result;
+		
+		$category = "Plumber";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['plumber'] = $result;
+		$total= $total+$result;
+		
+		$category = "Tutor";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['tutor'] = $result;
+		$total= $total+$result;
+		
+		$category = "Waiter";
+		$result = $this->hiremetrodbase->admin_dashboard($category);
+		$data['waiter'] = $result;
+		$total= $total+$result;
+		
+		$data['total'] = $total;
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_dashboard', $data);
+	}
+	
+	public function admin_reports(){
+		$data['title'] = "Hiremetro";		
+		
+		if(isset($_GET['view'])){
+			
+			$id = $_GET['id'];
+		
+			$reports = $this->hiremetrodbase->admin_report_messages($id);
+		
+			foreach($reports as $r){
+				
+				$info = array(
+					'report_id' => $r['report_id'],
+					'employee_id' => $id,
+					'report_subject' => $r['report_subject'],
+					'report_body' => $r['report_body'],
+					'report_date' => $r['report_date']
+				);
+				
+				$report[] = $info;
+			};
+			
+			$data['message'] = $report;
+		};
+		
+		if(isset($_GET['delete'])){
+			$id = $_GET['id'];
+			
+			$this->hiremetrodbase->admin_report_delete($id);
+		}
+		
+		$report = $this->hiremetrodbase->admin_reports();
+		
+		$id = 0;
+		
+		foreach($report as $r){
+				if($id != $r['employee_id']){
+					$name = $this->hiremetrodbase->admin_report_name($r['employee_id']);
+					$work_title = $this->hiremetrodbase->admin_report_work($r['employee_id']);
+					$num_reports = $this->hiremetrodbase->admin_report_nos($r['employee_id']);
+					
+					$reports = array(
+						'name' => $name,
+						'work_title' => $work_title,
+						'num_reports' => $num_reports,
+						'employee_id' => $r['employee_id']
+					);
+					
+					$reports1[] = $reports;
+					$id = $r['employee_id'];
+				}
+		}
+		
+		$data['reports'] = $reports1;
+		
+		print_r($reports);
+		
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_reports', $data);
+	}
+	
+	public function admin_suggestions(){
+		$data['title'] = "Hiremetro";		
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_suggestions', $data);
+	}
+	public function admin_message(){
+		$data['title'] = "Hiremetro";		
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_message', $data);
+	}
+	public function admin_settings(){
+		$data['title'] = "Hiremetro";		
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_settings', $data);
 	}
 	
 }
