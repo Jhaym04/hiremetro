@@ -251,6 +251,71 @@ class hiremetro_model extends CI_Model{
 		}
 	}
 	
+	public function admin_dashboard($category){
+		$this->db->select('*');
+		$this->db->from('work_details');
+		$this->db->where('work_title', $category);
+		$query = $this->db->get();
+		
+		if($query->num_rows() < 1){
+			return 0;
+		}
+		else{
+			return $query->num_rows();
+		}
+	}
+	
+	public function admin_reports(){
+		$this->db->select('*');
+		$this->db->from('reports');
+		$this->db->order_by('employee_id', 'asc');
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function admin_report_name($id){
+		$this->db->select('*');
+		$this->db->from('employee_information');
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		
+		return $name = $result[0]['fname'].' '.$result[0]['mname'].' '.$result[0]['lname'];
+	}
+	
+	public function admin_report_work($id){
+		$this->db->select('work_title');
+		$this->db->from('work_details');
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		$result = $query->result_array();
+		
+		return $result[0]['work_title'];
+	}
+	
+	public function admin_report_nos($id){
+		$this->db->select('*');
+		$this->db->from('reports');
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		
+		return $query->num_rows();
+	}
+	
+	public function admin_report_messages($id){
+		$this->db->select('*');
+		$this->db->from('reports');
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function admin_report_delete($id){
+		$this->db->where('employee_id', $id);
+		$this->db->delete('reports');
+	}
 }	
 
 ?>
