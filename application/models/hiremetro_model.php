@@ -316,6 +316,108 @@ class hiremetro_model extends CI_Model{
 		$this->db->where('employee_id', $id);
 		$this->db->delete('reports');
 	}
-}	
+
+	///////////////////////////////////////////////
+	public function get_suggestions(){
+		
+	 $this->db->select('*');
+	 $this->db->from('suggestions');
+	 $this->db->order_by('suggestion_id', 'desc');
+	
+	 $query = $this->db->get();
+	 return $query->result_array();
+	}
+	
+	/////////////
+	private function _get_users_data(){ 
+        $this->db->select('*'); 
+        $this->db->from('suggestions');
+		$this->db->order_by('suggestion_id', 'desc');	
+    }
+    
+    public function get_users($limit, $start){ 
+        $this->_get_users_data(); 
+        $this->db->limit($limit, $start); 
+        $query = $this->db->get(); 
+        return $query->result_array(); 
+    }
+    
+    public function count_all_users(){ 
+        $this->_get_users_data(); 
+        $query = $this->db->count_all_results(); 
+        return $query; 
+    }
+	
+	public function admin_message($id){
+		$this->db->select('*');
+		$this->db->from('suggestions');
+		$this->db->where('suggestion_id', $id);
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function admin_suggestions_delete($id){
+		$this->db->where('suggestion_id', $id);
+		$this->db->delete('suggestions');
+	}
+	
+	public function admin_message_update($id, $info){
+		$this->db->where('suggestion_id', $id);
+		$this->db->update('suggestions', $info);
+	}
+	
+	public function admin_profiles(){
+		$this->db->select('*');
+		$this->db->from('employee_information');
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function admin_profiles_2($id){
+		$this->db->select('*');
+		$this->db->from('work_details');
+		$this->db->where('employee_id', $id);
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function admin_profiles_search($search){
+		$this->db->select('*');
+		$this->db->from('employee_information');
+		$this->db->like('fname', $search, 'after');
+		$this->db->or_like('mname', $search, 'after');
+		$this->db->or_like('lname', $search, 'after');
+		$this->db->or_like('email', $search, 'after');
+		$query = $this->db->get();
+		
+		return $query->result_array();
+		
+	}
+	
+	public function admin_settings($table){
+		$this->db->select('*');
+		$this->db->from($table);
+		if($table == 'login_credentials'){
+			$this->db->where('employee_id', 0);
+		};
+		$query = $this->db->get();
+		
+		return $query->result_array();
+	}
+	
+	public function admin_settings_update($update){
+		$this->db->where('employee_id', 0);
+		$this->db->update('login_credentials', $update);
+	}
+	
+	public function admin_settings_update2($update){
+		$this->db->where('social_id', $update['social_id']);
+		$this->db->update('admin', $update);
+	}
+	
+	}	
 
 ?>
