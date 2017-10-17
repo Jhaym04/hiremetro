@@ -12,9 +12,14 @@
 				return 0;
 			}
 	}
+		
 	?>
 	
-	
+	<script>    
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "http://localhost/hiremetro/hiremetro/search_category");
+    }
+	</script>
 		
 	<div class="container-fluid pagee" style="background-image: url('images/bg.png'); min-height: 500px; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">
 

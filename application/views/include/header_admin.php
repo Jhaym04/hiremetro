@@ -33,6 +33,9 @@
 	<link rel="stylesheet" href="<?php echo base_url('css/faqs.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/soffersterms.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/about.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/dashboard.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/admin_message.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/admin_settings.css')?>">
 	
 </head>
 <body>
@@ -87,3 +90,4 @@
 				</div>
 			</div>
 		</div>
+<body style="background-image: url('<?php echo base_url('images/bg.png');?>'); min-height: 100%; background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; ">>

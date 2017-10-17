@@ -33,6 +33,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('css/faqs.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/soffersterms.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/about.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/dashboard.css')?>">
 
 	
 	<script>
@@ -77,6 +78,7 @@
 						</li>';
 					}else{
 						echo '
+						<li><a href="'; echo base_url('hiremetro'); echo '"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 						<li><a data-toggle="modal" data-target="#signup1Modal" style="cursor: pointer;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 						<li><a data-toggle="modal" data-target="#loginModal" style="margin-right: 20px; cursor: pointer;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> ';
 					};

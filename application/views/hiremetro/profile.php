@@ -1,5 +1,11 @@
 <!-- profile -->
 	
+	<script>    
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "http://localhost/hiremetro/hiremetro/view_profile");
+    }
+	</script>
+	
 	<!-- Navbar -->
 		
 	<nav class="navbar navbar-custom navbar-fixed-top">
