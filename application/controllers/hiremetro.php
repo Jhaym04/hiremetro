@@ -11,6 +11,8 @@ class Hiremetro extends CI_Controller {
 		//model name & nickname
 		$this->load->model('hiremetro_model','hiremetrodbase');
 		$this->load->library('session');
+		$this->load->helper('url');
+		$this->load->library('pagination');  
 	}
 	
 	public function index(){
@@ -256,6 +258,7 @@ class Hiremetro extends CI_Controller {
 				'contact' => $this->session->userdata('contact'),
 				'work_description' => $this->input->post('work_description'),
 				'work_pay' => $this->input->post('work_pay'),
+				'work_language' => $this->input->post('work_language'),
 				'status' => 'show',
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
@@ -837,6 +840,121 @@ class Hiremetro extends CI_Controller {
 		$this->load->view('hiremetro/admin_dashboard', $data);
 	}
 	
+	public function admin_profiles(){
+		
+		$data['title'] = "Hiremetro";
+		
+		if(!empty($_GET['category']) && !empty($_GET['search'])){
+			
+			$category = $_GET['category'];
+			if($category != 'All'){
+				
+				$search = $_GET['search'];
+				
+				$result_search = $this->hiremetrodbase->admin_profiles_search($search);
+				$result_category = $this->hiremetrodbase->search_category($category);
+				
+				$profiles = null;
+				
+				foreach($result_search as $s){
+					foreach($result_category as $c){
+						if($c['employee_id'] == $s['employee_id']){
+							$info = array(
+								'employee_id' => $c['employee_id'],
+								'name' => (' '.$s['fname'].' '.$s['mname'].' '.$s['lname']),
+								'address' => $s['address'],
+								'email' => $s['email'],
+								'contact' => $s['contact'],
+								'work_title' => $c['work_title']
+							);
+							$profiles[] = $info;
+							break;
+						}
+					}
+				}
+				if($profiles == null){
+					$data['profiles'] = 'null';
+				}else{
+					$data['profiles'] = $profiles;
+				}
+			}
+			else{
+				$search = $_GET['search'];
+				
+				$result_search =  $this->hiremetrodbase->admin_profiles_search($search);
+				
+				foreach($result_search as $s){
+					$wd = $this->hiremetrodbase->admin_profiles_2($s['employee_id']);
+					
+					$info = array(
+						'employee_id' => $s['employee_id'],
+						'name' => (' '.$s['fname'].' '.$s['mname'].' '.$s['lname']),
+						'address' => $s['address'],
+						'email' => $s['email'],
+						'contact' => $s['contact'],
+						'work_title' => $wd[0]['work_title']
+					);
+					$profiles[] = $info;
+				}
+				
+				$data['profiles'] = $profiles;
+				
+			}
+		}
+		elseif(!empty($_GET['category']) && $_GET['category'] != 'All'){
+			
+			$category = $_GET['category'];
+				
+				$result = $this->hiremetrodbase->search_category($category);
+				
+				if($result != 'false'){
+					foreach($result as $r){
+						$table = "employee_information";
+						$ei = $this->hiremetrodbase->get_employee_information($r['employee_id'], $table);
+						
+						$info = array(
+							'employee_id' => $r['employee_id'],
+							'name' => (' '.$ei[0]['fname'].' '.$ei[0]['mname'].' '.$ei[0]['lname']),
+							'address' => $ei[0]['address'],
+							'email' => $ei[0]['email'],
+							'contact' => $ei[0]['contact'],
+							'work_title' => $r['work_title']
+						);
+						$profiles[] = $info;
+					}
+					
+					$data['profiles'] = $profiles;
+				}
+				else{
+					$data['profiles'] = 'null';
+				};
+			
+		}	
+		else{
+			$ei = $this->hiremetrodbase->admin_profiles();
+			
+			foreach($ei as $e){
+				$wd = $this->hiremetrodbase->admin_profiles_2($e['employee_id']);
+				
+				$info = array(
+					'employee_id' => $e['employee_id'],
+					'name' => (' '.$e['fname'].' '.$e['mname'].' '.$e['lname']),
+					'address' => $e['address'],
+					'email' => $e['email'],
+					'contact' => $e['contact'],
+					'work_title' => $wd[0]['work_title']
+				);
+				$profiles[] = $info;
+			}
+			
+			$data['profiles'] = $profiles;
+		};
+		
+		$this->load->view('include/header_admin', $data);
+		$this->load->view('hiremetro/admin_profile', $data);
+		
+	}
+	
 	public function admin_reports(){
 		$data['title'] = "Hiremetro";		
 		
@@ -899,19 +1017,157 @@ class Hiremetro extends CI_Controller {
 	}
 	
 	public function admin_suggestions(){
-		$data['title'] = "Hiremetro";		
+		$data['title'] = "Hiremetro";	
+		
+		if(isset($_GET['delete'])){
+			$id = $_GET['id'];
+			$this->hiremetrodbase->admin_suggestions_delete($id);
+		}
+		
+		$getsuggestions = $this->hiremetrodbase->get_suggestions();
+		$info = array('suggestions' => $getsuggestions);
+		
+		$suggestions[] = $info;
+		$data['suggestions'] = $suggestions;
+		
+		//////////////////////////////////////////////////////////////////////
+		$config['base_url'] = base_url().'hiremetro/admin_suggestions';        
+        $config['total_rows'] = $this->hiremetrodbase->count_all_users();        
+        $config['per_page'] = 8;        
+        $config['uri_segment'] = 3;        
+        $config['full_tag_open'] = '<ul class="pagination pagination-lg">';        
+        $config['full_tag_close'] = '</ul>';        
+        $config['first_link'] = 'First';        
+        $config['last_link'] = 'Last';        
+        $config['first_tag_open'] = '<li>';        
+        $config['first_tag_close'] = '</li>';        
+        $config['prev_link'] = '&laquo';        
+        $config['prev_tag_open'] = '<li class="prev">';        
+        $config['prev_tag_close'] = '</li>';        
+        $config['next_link'] = '&raquo';        
+        $config['next_tag_open'] = '<li>';        
+        $config['next_tag_close'] = '</li>';        
+        $config['last_tag_open'] = '<li>';        
+        $config['last_tag_close'] = '</li>';        
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';        
+        $config['cur_tag_close'] = '</a></li>';        
+        $config['num_tag_open'] = '<li>';        
+        $config['num_tag_close'] = '</li>';
+        
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($config);        
+        $data['links'] = $this->pagination->create_links();        
+        $data['users'] = $this->hiremetrodbase->get_users($config["per_page"], $page);    
+        ////////////////////////////////////////////////////////////////////////////////////
+		
 		$this->load->view('include/header_admin', $data);
 		$this->load->view('hiremetro/admin_suggestions', $data);
 	}
 	public function admin_message(){
-		$data['title'] = "Hiremetro";		
+		$data['title'] = "Hiremetro";
+		
+		$id = $_GET['id'];
+		
+		$result = $this->hiremetrodbase->admin_message($id);
+		
+		$info = array (
+			'suggestion_id' => $result[0]['suggestion_id'],
+			'subject' => $result[0]['subject'],
+			'date' => $result[0]['date'],
+			'suggestion' => $result[0]['suggestion'],
+			'viewed' => $result[0]['viewed']
+		);
+		
+		if($info['viewed'] != 1){
+			$info['viewed'] = 1;
+			$this->hiremetrodbase->admin_message_update($id, $info);
+		}
+		
+		$data['suggestion'] = $info;
+		
 		$this->load->view('include/header_admin', $data);
 		$this->load->view('hiremetro/admin_message', $data);
 	}
 	public function admin_settings(){
-		$data['title'] = "Hiremetro";		
+		$data['title'] = "Hiremetro";	
+		
+		$table = "login_credentials";
+		$admin = $this->hiremetrodbase->admin_settings($table);
+		$table = "admin";
+		$accounts = $this->hiremetrodbase->admin_settings($table);
+		
+		$admin = array(
+			'username' => $admin[0]['username'],
+			'password' => $admin[0]['password'],
+			'email' => $admin[0]['email'],
+			'facebook' => $accounts[0]['account'],
+			'twitter' => $accounts[1]['account'],
+			'gmail' => $accounts[2]['account']
+		);
+		
+		if(isset($_POST['username'])){
+			$update = array(
+				'employee_id' => 0,
+				'username' => $_POST['username'],
+				'password' => $admin['password'],
+				'email' => $admin['email']
+			);
+			$admin['username'] = $_POST['username'];
+			$this->hiremetrodbase->admin_settings_update($update);
+		}
+		
+		if(isset($_POST['password'])){
+			$update = array(
+				'employee_id' => 0,
+				'username' => $admin['username'],
+				'password' => $_POST['password'],
+				'email' => $admin['email']
+			);
+			$admin['password'] = $_POST['password'];
+			$this->hiremetrodbase->admin_settings_update($update);
+		}
+		
+		if(isset($_POST['email'])){
+			$update = array(
+				'employee_id' => 0,
+				'username' => $admin['username'],
+				'password' => $admin['password'],
+				'email' => $_POST['email']
+			);
+			$admin['email'] = $_POST['email'];
+			$this->hiremetrodbase->admin_settings_update($update);
+		}
+		if(isset($_POST['account'])){
+			$update = array(
+				'social_id' => 0,
+				'social_media' => 'facebook',
+				'account' => $_POST['facebook']
+			);
+			$admin['facebook'] = $_POST['facebook'];
+			$this->hiremetrodbase->admin_settings_update2($update);
+			
+			$update = array(
+				'social_id' => 1,
+				'social_media' => 'twitter',
+				'account' => $_POST['twitter']
+			);
+			$admin['twitter'] = $_POST['twitter'];
+			$this->hiremetrodbase->admin_settings_update2($update);
+			
+			$update = array(
+				'social_id' => 2,
+				'social_media' => 'gmail',
+				'account' => $_POST['gmail']
+			);
+			$admin['gmail'] = $_POST['gmail'];
+			$this->hiremetrodbase->admin_settings_update2($update);
+		}
+		
+		$data['admin'] = $admin;
+		
 		$this->load->view('include/header_admin', $data);
 		$this->load->view('hiremetro/admin_settings', $data);
 	}
+	
 	
 }
