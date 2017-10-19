@@ -1,0 +1,88 @@
+account - dto kukunin yun data pag naglologin
+	email - yun yung username niya
+	password - understood na to
+	type - pag 1, sa employee. pag 2, sa employer, pag 3, sa admin
+
+admin - eto finillupan sa crud ng admin
+	admin_id - primary key
+	fname
+	mname
+	lname
+	email
+
+ads(incomplete)
+	ads_id  - primary key
+
+employee -eto finillupan sa signup ng employee
+	employee_id - primary key
+	fname
+	mname
+	lname
+	email
+
+employee_details - eto yung kinomplete na na profile ng employee
+	employee_id - foreign key
+	title - maid, driver, etc
+	location - city and province lang to. dropdown to sbi ni sir
+	contact - eto contact
+	rate hour
+	rate day
+
+employee_picture - eto pciture ng employee
+	employee_id - foreign ke
+	picture - eto na pic
+	approved - pag 2 ito, disapproved, pag 1 ito, approved na, pag 0 ito, ang lalabas na picture dapat sa profile is yung default pic na walang mukha
+	reason - eto naman pag di inapprove yung picture eto reason pag 2 nakalagay sa approved field ng table
+
+employee_reports - reports sa employee
+	employee_id - yung employee
+	employer_id - yung nagreklamo
+	date - kung kailan
+	subject
+	message
+
+employee_reviews- eto naman rating 1-5
+	employee_id - yung employee
+	employer_id - yung nagrate
+	date -kung kailan
+	rating - 1-5
+	message
+
+employer -eto finillupan sa signup ng employer
+	employee_id - primary key
+	fname
+	mname
+	lname
+	email
+
+employer_reports - reports sa employer
+	employer_id - yung employer
+	employee_id - yung nagreklamo
+	date - kung kailan
+	subject
+	message
+
+employer_reviews- eto naman rating 1-5
+	employer_id - yung employer
+	employee_id - yung nagrate
+	date -kung kailan
+	rating - 1-5
+	message
+
+hire_request - eto mga hire request sa employees
+	employee_id - yung employee na hinahire
+	employer_id - yung naghihire na employer
+	date - kung kailan
+	accepted - pag 1 ito, naaccept na at ipapakita na rin yung contact sa profile (see employee_details table)
+		pag 0 ito, means hndi pa naaaccept
+
+promos - sa promos ito (incomplete)
+	promo_id - primary key
+
+suggestions - eto suggestions sa admin
+	suggestion_id - primary key
+	subject
+	date
+	message
+	viewed - pag 1, na view na, pag 0, hndi pa. pag 1 ito, ididisplay siya sa kulay na hndi pa nabubuksan parang sa gmail yung sa new messages.
+
