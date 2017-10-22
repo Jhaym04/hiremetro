@@ -12,6 +12,7 @@
 	<link href="<?php echo base_url('bootstrap/css/bootstrap-datepicker.css'); ?>" rel="stylesheet" />
 	<link href="<?php echo base_url('bootstrap/css/custom.css'); ?>" rel="stylesheet" />
 	<link rel="icon" href="<?php echo base_url('images/logo1.ico')?>">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	
 	<!--[if lt IE 9]>
 		<script
@@ -27,13 +28,12 @@
 	<script src="<?php echo base_url('bootstrap/js/bootstrap-datepicker.js');?>"> </script>
 	
 	<link rel="stylesheet" href="<?php echo base_url('css/home.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/ihover.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/w3.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/filter.css')?>">
+	<link rel="stylesheet" href="<?php echo base_url('css/signup.css')?>">
 	<link rel="stylesheet" href="<?php echo base_url('css/profile.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('css/ads.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('css/faqs.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('css/soffersterms.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('css/about.css')?>">
-	<link rel="stylesheet" href="<?php echo base_url('css/dashboard.css')?>">
+	
 
 	
 	<script>
@@ -46,15 +46,11 @@
 </head>
 <body>
 	<!-- Navbar -->
-	
-	<div class="se-pre-con text-center">
-		<img src="<?php echo base_url('images/loader-64x/Preloader_4.gif')?>">
-	</div>
-	
+		
 	<nav class="navbar navbar-custom navbar-fixed-top">
 		<div class="navbar-header" id="logo" >
 				<img src="<?php echo base_url('images/logo.png')?>">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span> 
@@ -63,25 +59,64 @@
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
 		
-			<ul class="nav navbar-nav navbar-right" id="navbuttons">
+			<ul class="nav navbar-nav navbar-right">
 				<?php
+				
+				if($this->session->userdata('logged_in') == TRUE){
+				
+				echo '
+				<li><a href="';echo base_url();echo'"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-bell"  ></span></a></li>
+				<li class="dropdown dropdown-large">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata('name').' <b class="caret"></b></a>
+				
+				<ul class="dropdown-menu dropdown-menu-large row">
+				    <div class="row">
+					<li class="col-sm-4">
+						<ul>
+							<img src="'; echo base_url($this->session->userdata('picture')); echo '" style="width: 100px; height: 100px; border-radius: 100px;"/>
+							
+							
+						</ul>
+					</li>
+					<li class="col-sm-8">
+						<ul>
+							<h4><a href="#" style="color:black;">';echo $this->session->userdata('name');echo'</h4>
+							<h6>'.$this->session->userdata('email').'</h6>
+							
+							
+							<br />
+							<br />
+							<a href="';echo base_url('hiremetro/client_profile');echo'"><button class="w3-btn w3-teal w3-hover-teal" >My Account</button></a>
+							
+							
+						</ul>
+					</li>
+					</div>
 					
-					if($this->session->userdata('logged_in') == TRUE){
-						echo '
-						<li><a href="'; echo base_url('hiremetro'); echo '"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-						<li class="dropdown">
-							<a href="#"  style="margin-right: 20px;" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata('username').' </a>
-							<ul class="dropdown-menu">
-								<li><a href="'; echo base_url('hiremetro/view_profile'); echo '">Profile <span style="color: black;" class="glyphicon glyphicon-user"></span></a></li>
-								<li><a data-toggle="modal" data-target="#logout" style="cursor: pointer;"> Logout <span style="color: black;" class="glyphicon glyphicon-off"></span></a></li>
-							</ul>
-						</li>';
-					}else{
-						echo '
-						<li><a href="'; echo base_url('hiremetro'); echo '"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-						<li><a data-toggle="modal" data-target="#signup1Modal" style="cursor: pointer;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a data-toggle="modal" data-target="#loginModal" style="margin-right: 20px; cursor: pointer;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> ';
-					};
+					<hr>
+					
+					<div class="row text-right">
+						<div class="col-md-8">
+							
+						</div>
+						<div class="col-md-3">
+							<a href="';echo base_url('hiremetro/logout'); echo'"><button  type="button" class="w3-btn w3-red w3-hover-red" id="padds"> Sign Out </button></a>
+						</div>
+						<div class="col-md-1">
+						</div>
+					</div>
+					
+					
+					
+				</ul>';
+				}
+				else{
+					echo'
+					<li><a href="'; echo base_url('hiremetro'); echo'"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+					<li><a href="';echo base_url('hiremetro/signup'); echo'"><span class="glyphicon glyphicon-user"></span> Join Us</a></li>
+					<li><a href="#" style="margin-right: 20px;" data-toggle="modal" data-target="#loginModal" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+				}
 				?>
 			</ul>
 		</div>
@@ -184,7 +219,7 @@
 						<p>Wrong username or password !! Try again !</p>
 					</div>
 					<div class="modal-footer text-center">
-						<button class="btn btn-default" data-dismiss="modal">Ok</button>
+						<button class="w3-btn w3-black w3-hover-teal" data-dismiss="modal">Ok</button>
 						</form>
 					</div>
 				</div>
@@ -197,14 +232,18 @@
 				<div class="modal-content" id="login">
 					<div class="modal-header text-center" id="header">
 						<button type="button" class="close" data-dismiss="modal"> &times; </button>
-						<h4 class="modal-title"> LOGIN </h4>
-						<p>check and update your account</p>
+						<h4 class="modal-title mlight"><b> LOGIN </b></h4>
+						<p class="mlight">check and update your account</p>
 					</div>
-					<div class="modal-body">
-						<form action="<?php echo base_url('hiremetro/login')?>" method="post">
+					<div class="modal-body text-center">
+						<?php echo form_open('hiremetro/login'); ?>
+						<?php echo validation_errors();?>
+						<?php if(isset($login_error_msg)) {
+							echo $login_error_msg;
+						}?>
 							<div class="form-vertical">
 								<div class="form-group">
-									<input type="text" class="form-control" name="username" placeholder="Username"> 
+									<input type="email" class="form-control" name="email" placeholder="Username"> 
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control" name="password" placeholder="Password"> 
@@ -216,7 +255,7 @@
 							</div>
 					</div>
 					<div class="modal-footer text-center">
-						<button type="submit" class="btn btn-default">Submit</button>
+						<button type="submit" class="w3-btn w3-black w3-hover-teal" >Submit</button>
 						</form>
 					</div>
 				</div>
@@ -408,5 +447,14 @@
 				</div>
 			</div>
 		</div>
-</body>
-</html>
+<?php
+	if(isset($login_error)){
+		echo "<script> 
+			 $(window).on('load',function(){
+				$('#loginModal').modal('show');
+			});
+		</script>";
+		
+	}
+?>
+

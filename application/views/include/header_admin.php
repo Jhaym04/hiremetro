@@ -51,7 +51,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span> 
 				</button>
-				<a style="color: white; margin-left: 350px; font-size: 20px;">Administrator Control Panel</a>
+				<a style="color: white; margin-left: 50px; font-size: 20px;">Administrator Control Panel</a>
 		</div>	
 		
 		<div class="collapse navbar-collapse" id="myNavbar">
