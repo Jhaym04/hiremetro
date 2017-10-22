@@ -1,0 +1,61 @@
+
+
+div {
+	font-family: montserrat;
+}
+
+#scroll {
+	width: 364.6px;
+	height: 622px;
+	overflow-y: scroll;
+}
+
+#borderleft{
+	border-left: 2px solid lightgray;
+	padding-left: 35px;
+	
+}
+
+#padd { 
+padding-right:20px;
+}
+
+#paddd{
+	padding-right: 35px;
+}
+
+.badge {
+	background-color: #3b8686;
+}
+
+#head {
+	padding-top: 10px;
+	font-family: montserrat;
+	font-size: 30px;
+	color: #3b8686;
+}
+#content {
+	padding-top: 10px;
+	padding-left: 20px;
+	font-family: montserrat;
+	font-size: 20px;
+}
+
+.fix-div {position:fixed; height:100%; width: 100%; left 0%; top:0%; z-index:1;}
+#wrapper {position:relative; z-index:2; margin:100%; 0 0}
+
+#padds {
+	padding-right: 20px;
+}
+
+#sign {
+    background-color: #3b8686;
+    color: white;
+	border-radius: 10px;
+    padding: 0px 50px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.name {height:40px; width: 210px; margin: 2px; padding: 5px; font-size: 18px;}
+.info {height:40px; width: 429px; margin: 2px; padding: 5px; font-size: 18px;}
