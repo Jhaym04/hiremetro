@@ -1,0 +1,215 @@
+<style>
+
+div {
+	font-family: montserrat;
+}
+
+	.pagee{
+	background-image: url('images/bg.png');
+	
+	/* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.affix {
+      top: 0;
+      width: 100%;
+	  z-index: 10;
+ }
+ 
+ .navbar-custom {
+    background-color:#3b8686;
+    color: white;
+    border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    color: black;
+	background-color: transparent;
+}
+
+.none {
+list-style-type : none;
+}
+
+#red {
+	color: red;
+}
+#no {
+	margin-top: -20px;
+}
+
+
+#logo img {
+	
+	height: 40px;
+	margin: 5px;
+	margin-left: 20px;
+	
+}
+
+#input {
+	width: 100%;
+}
+	
+
+#logo span{
+	background-color: white;
+}
+
+#needhelp img{
+	width: 1366px;
+}
+
+#myCarousel img{
+	width: 100%;
+}
+
+#search input[type=submit]{
+	border: 0xpx;
+    border-radius: 2px;
+	font-size: 8px;
+	background-color: #0b486b;
+	color: white;	
+}
+
+#search input[type=text]{
+	width: 200px;
+	border-radius: 3px;
+
+}
+
+.padh5 {
+	padding-left: 10px;
+}
+
+
+#jobs h4{
+	font-family: abeatbykai;
+	
+}
+
+#padd {
+	padding-left:25px;
+	background-color: transparent;
+}
+
+
+
+#footer{
+	background-color: #3b8686;
+	
+}
+
+#namee {
+	font-size: 25px;
+}
+
+
+#footer a{
+	text-decoration: underline;
+	color: white;
+}
+
+#footer img{
+	width: 25px;
+	height: 25px;
+}
+
+.border{
+	border: 3px solid gray;
+
+}
+
+.paddingads {
+	padding-left: 5px;
+}
+
+.imgg{
+	width: 150px;
+	height:150px;
+}
+
+#name {
+	font-size: 30px;
+	text-decoration:bold;
+}
+
+#cat {
+	font-size: 25px;
+	color:#3b8686;
+}
+
+.text {
+	font-size: 20px;
+}
+.hire {
+	height: 40px;
+	width: 150px;
+	font-size: 16px;
+	float: right;
+	margin-top: 15px;
+	color: white;
+	background-color: #3b8686;
+	border-radius: 5px;
+}
+
+.checked { color: #3b8686; }
+#star {
+	text-align: center;
+	font-size: 30px; 
+	position: relative;
+	top: 10px;
+}
+
+#star2 {
+	font-size: 30px; 
+	position: relative;
+	top: 10px;
+}
+.bargraph {
+	position: relative;
+	left : -20px;
+	margin: auto;
+	list-style: none;
+	padding-top: 5px;
+	width:200px;
+}
+ul.bargraph li {
+	height: 15px;
+	font-size: 10px;
+	padding: 0px 10px;
+	margin-bottom: 3px;
+}
+ul.bargraph li.five { background: blue; width:35%; }		 
+ul.bargraph li.four { background: green; width:100%; }	 
+ul.bargraph li.three { background: yellow; width:80%; }	 
+ul.bargraph li.two { background: orange; width:20%; }	 
+ul.bargraph li.one { background: red; width:5%; }
+
+.rating {font-size: 60px; text-align: center;}
+
+#emp {
+	font-size: 25px;
+	padding-left: 20px;
+}
+		
+	
+.small {
+	font-size:12px;
+}		
+</style>
